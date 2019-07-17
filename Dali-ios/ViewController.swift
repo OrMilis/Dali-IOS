@@ -17,26 +17,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view's delegate
         sceneView.delegate = self
-        
-        // Show statistics such as fps and timing information
+        sceneView.scene = SCNScene()
+        sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
         sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
-        // Run the view's session
+        configuration.planeDetection = .horizontal
+        
         sceneView.session.run(configuration)
     }
     
@@ -71,5 +63,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        // 1
+        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        
+        // 2
+        let width = CGFloat(planeAnchor.extent.x)
+        let height = CGFloat(planeAnchor.extent.z)
+        let plane = SCNPlane(width: width, height: height)
+        
+        // 3
+        plane.materials.first?.diffuse.contents = UIColor.init(red: 0.0, green: 0.0, blue: 1, alpha: 0.2)
+        
+        // 4
+        let planeNode = SCNNode(geometry: plane)
+        
+        // 5
+        let x = CGFloat(planeAnchor.center.x)
+        let y = CGFloat(planeAnchor.center.y)
+        let z = CGFloat(planeAnchor.center.z)
+        planeNode.position = SCNVector3(x,y,z)
+        planeNode.eulerAngles.x = -.pi / 2
+        
+        // 6
+        node.addChildNode(planeNode)
     }
 }

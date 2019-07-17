@@ -7,7 +7,23 @@
 //
 
 import UIKit
+import MapKit
 
-struct Artwork: Decodable {
+public class Artwork: Decodable {
+    let id: Int
+    let path: String
+    let name: String
+    let artistId: String
+    let lat: Double
+    let lng: Double
+    let dt_created: String
+    let generes: [String]
+    let generesIds: [Int]
+    let info: String
+    let artistName: String
+    let artistPicture: String
     
+    public func getLocationCoordinate() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: lat, longitude: lng)
+    }
 }

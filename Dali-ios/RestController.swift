@@ -15,9 +15,9 @@ class RestController: NSObject {
     static let systemPath: String = "/system"
     static let mlPath: String = "/ML"
     
-    class func getArtworkByLocation(latitude: Double, longitude: Double, completion: @escaping (Result<[Course], Error>) -> ()) {
+    class func getArtworkByLocation(latitude: Double, longitude: Double, completion: @escaping (Result<[Artwork], Error>) -> ()) {
         
-        let urlString = "https://api.letsbuildthatapp.com/jsondecodable/courses"//self.endPoint + self.userPath + "/getArtsByLocation?" + "lat=" + String(latitude) + "&lng=" + String(longitude)
+        let urlString = self.endPoint + self.userPath + "/getArtsByLocation?" + "lat=" + String(latitude) + "&lng=" + String(longitude)
         guard let url = URL(string: urlString) else { return }
         
         get(url: url, completion: completion)

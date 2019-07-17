@@ -7,31 +7,37 @@
 //
 
 import UIKit
-
-struct Course: Decodable {
-    let id: Int
-    let name: String
-    let imageUrl: String
-    let number_of_lessons: Int
-}
+import MapKit
 
 class MapViewController: UIViewController {
-
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
+    let locationManager = CLLocationManager();
+    
+    override func viewWillAppear(_ animated: Bool) {
+        locationManager.requestWhenInUseAuthorization();
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        RestController.getArtworkByLocation(latitude: 1.1, longitude: 1.2, completion: { (res) in
-            switch res {
-            case .success(let genData):
-                genData.forEach({ (genDataItem) in
-                    print(genDataItem.name)
-                })
-            case .failure(let err):
-                print(err)
-            }
-        })
+        self.mapView.showsUserLocation = true
+        self.mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+        
+        let trackButton = MKUserTrackingBarButtonItem.init(mapView: mapView)
+        self.navigationItem.rightBarButtonItem = trackButton
+        
+        if(CLLocationManager.locationServicesEnabled()) {
+            locationManager.delegate = self;
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation();
+        } else {
+            print("No service")
+        }
+        
     }
     
 
@@ -44,26 +50,29 @@ class MapViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    /*func fetchCoursesJSON(completion: @escaping (Result<[Course], Error>) -> ()) {
-        
-        let urlString = "https://api.letsbuildthatapp.com/jsondecodable/courses"
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, resp, err) in
-            
-            if let err = err {
-                completion(.failure(err))
-                return
-            }
-            
-            do {
-                let courses = try JSONDecoder().decode([Course].self, from: data!)
-                completion(.success(courses))
-            } catch let jsonError {
-                completion(.failure(jsonError))
-            }
-        }.resume()
-    }*/
 
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        let calendar = Calendar.current;
+        print(calendar)
+        print(location)
+        
+        RestController.getArtworkByLocation(latitude: location.latitude, longitude: location.longitude, completion: { (res) in
+            switch res {
+            case .success(let genData):
+                genData.forEach({ (artwork) in
+                    let annotation = MKPointAnnotation();
+                    annotation.coordinate = artwork.getLocationCoordinate()
+                    annotation.title = artwork.name
+                    annotation.subtitle = "By: " + artwork.artistName
+                    self.mapView.addAnnotation(annotation)
+                })
+            case .failure(let err):
+                print(err)
+            }
+        })
+    }
 }
