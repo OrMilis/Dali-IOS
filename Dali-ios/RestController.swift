@@ -24,6 +24,15 @@ class RestController: NSObject {
 
     }
     
+    class func searchUsers(str: String, completion: @escaping (Result<[Artist], Error>) -> ()) {
+        let urlString = self.endPoint + self.userPath + "/search?" + "str=" + "\(str)"
+        guard let encodedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
+        guard let url = URL(string: encodedUrlString) else { return }
+        print("URL: ", url.absoluteString)
+        
+        get(url: url, completion: completion)
+    }
+    
     private class func get<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> ()){
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
          

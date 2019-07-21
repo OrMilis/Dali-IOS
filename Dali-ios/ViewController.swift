@@ -21,6 +21,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = SCNScene()
         sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
         sceneView.showsStatistics = true
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
+        
+        addTapGestureToSceneView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,5 +93,50 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // 6
         node.addChildNode(planeNode)
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        // 1
+        guard let planeAnchor = anchor as?  ARPlaneAnchor,
+            let planeNode = node.childNodes.first,
+            let plane = planeNode.geometry as? SCNPlane
+            else { return }
+        
+        // 2
+        let width = CGFloat(planeAnchor.extent.x)
+        let height = CGFloat(planeAnchor.extent.z)
+        plane.width = width
+        plane.height = height
+        
+        // 3
+        let x = CGFloat(planeAnchor.center.x)
+        let y = CGFloat(planeAnchor.center.y)
+        let z = CGFloat(planeAnchor.center.z)
+        planeNode.position = SCNVector3(x, y, z)
+    }
+    
+    @objc func addShipToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
+        let tapLocation = recognizer.location(in: sceneView)
+        let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+        
+        guard let hitTestResult = hitTestResults.first else { return }
+        let translation = hitTestResult.worldTransform.columns.3
+        let x = translation.x
+        let y = translation.y
+        let z = translation.z
+        
+        print("Trans: ", translation)
+        
+        /*guard let shipScene = SCNScene(named: "scene.usdz", inDirectory: "art.scnassets"),
+            let shipNode = shipScene.rootNode.childNode(withName: "ship", recursively: false)
+            else { return }
+        
+        shipNode.position = SCNVector3(x,y,z)
+        sceneView.scene.rootNode.addChildNode(shipNode)*/
+    }
+    
+    func addTapGestureToSceneView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.addShipToSceneView(withGestureRecognizer:)))
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
 }

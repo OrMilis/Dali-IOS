@@ -21,9 +21,23 @@ public class Artwork: Decodable {
     let generesIds: [Int]
     let info: String
     let artistName: String
-    let artistPicture: String
+    let artistPicture: String?
     
     public func getLocationCoordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: lat, longitude: lng)
     }
+}
+
+public class Artist: Decodable {
+    let id: String
+    let pictureUrl: String?
+    let name: String
+    let generes: [String]
+    let bio: String?
+    let likedArtwork: [Artwork]
+    let following: [String]
+    let recommendedGeneres: [String]
+    let recommendedArtists: [String]
+    let artworks: [Artwork]
+    let followers: [String]
 }
