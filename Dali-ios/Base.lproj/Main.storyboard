@@ -93,18 +93,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mh5-wp-e0U">
-                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mh5-wp-e0U">
+                                <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="slR-qv-dXR"/>
+                                </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="onTextChange:" destination="sO7-Mt-5DC" eventType="editingChanged" id="UdZ-Fy-C8y"/>
+                                    <outlet property="delegate" destination="sO7-Mt-5DC" id="bRQ-1b-rrN"/>
                                 </connections>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M8r-SP-1FJ">
+                                <rect key="frame" x="0.0" y="104" width="320" height="464"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="M8r-SP-1FJ" firstAttribute="centerX" secondItem="Nrp-Nj-0s3" secondAttribute="centerX" id="4Zv-by-CWX"/>
+                            <constraint firstItem="M8r-SP-1FJ" firstAttribute="top" secondItem="mh5-wp-e0U" secondAttribute="bottom" id="I0l-T2-C0a"/>
+                            <constraint firstItem="mh5-wp-e0U" firstAttribute="centerX" secondItem="Nrp-Nj-0s3" secondAttribute="centerX" id="QF3-uR-NSg"/>
+                            <constraint firstItem="Nrp-Nj-0s3" firstAttribute="bottom" secondItem="M8r-SP-1FJ" secondAttribute="bottom" id="SSG-3g-C5S"/>
+                            <constraint firstItem="M8r-SP-1FJ" firstAttribute="width" secondItem="Q97-99-Qhb" secondAttribute="width" id="Uhj-Yv-1GP"/>
+                            <constraint firstItem="mh5-wp-e0U" firstAttribute="top" secondItem="Nrp-Nj-0s3" secondAttribute="top" id="hRy-ZB-OsB"/>
+                            <constraint firstItem="mh5-wp-e0U" firstAttribute="width" secondItem="Q97-99-Qhb" secondAttribute="width" id="sxS-DH-Ohj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Nrp-Nj-0s3"/>
                     </view>
                     <connections>
