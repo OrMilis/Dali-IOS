@@ -33,6 +33,21 @@ class RestController: NSObject {
         get(url: url, completion: completion)
     }
     
+    class func getPictureFromURL(urlString: String, completion: @escaping (Result<Data, Error>) -> ()) {
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            
+            if let err = err {
+                completion(.failure(err))
+                return
+            }
+            
+            guard let genData = data else { return }
+            completion(.success(genData))
+            
+            }.resume()
+    }
+    
     private class func get<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> ()){
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
          

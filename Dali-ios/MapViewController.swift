@@ -40,7 +40,13 @@ class MapViewController: UIViewController {
         
     }
     
-
+    @IBAction func onBtnClick(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+        guard let searchViewController = storyBoard.instantiateViewController(withIdentifier: "SearchView") as? SearchViewController else { return }
+        
+        self.navigationController?.pushViewController(searchViewController, animated: true);
+    }
+    
     /*
     // MARK: - Navigation
 

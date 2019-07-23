@@ -11,14 +11,21 @@ import UIKit
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var searchTableView: UITableView!
     
     var buffTimer: Timer = Timer()
+    var searchDataList: [Artist] = [Artist]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchField.setPadding()
         searchField.setBottomBorder()
+        
+        searchTableView.rowHeight = UITableView.automaticDimension
+        searchTableView.estimatedRowHeight = 600
 
+        /*testImage.loadFromUrl(urlString: "https://twistedsifter.files.wordpress.com/2012/09/trippy-profile-pic-portrait-head-on-and-from-side-angle.jpg")
+        testImage.setRoundedImage()*/
         // Do any additional setup after loading the view.
     }
     
@@ -43,13 +50,22 @@ class SearchViewController: UIViewController {
     func sendSearchText() {
         print("In")
         guard let text = searchField.text else { return }
-        if(text == "") { return }
+        if(text == "") {
+            self.searchDataList = [Artist]()
+            self.searchTableView.reloadData()
+            return
+        }
         RestController.searchUsers(str: text, completion: { (res) in
             switch res {
             case .success(let genData):
                 genData.forEach({ (artist) in
                     print(artist.name)
                 })
+                
+                DispatchQueue.main.async {
+                    self.searchDataList = genData
+                    self.searchTableView.reloadData()
+                }
             case .failure(let err):
                 print(err)
             }
@@ -57,27 +73,42 @@ class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UITextFieldDelegate {
+extension SearchViewController: UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    //UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.searchField.resignFirstResponder()
-        self.buffTimer.invalidate()
-        self.sendSearchText()
+        if(self.buffTimer.isValid) {
+            self.buffTimer.invalidate()
+            self.sendSearchText()
+        }
         return true
+    }
+    
+    //UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchDataList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: GenericTableViewCell.identifier, for: indexPath) as! GenericTableViewCell
+        let cellData = searchDataList[indexPath.row]
+        
+        cell.MainText.text = cellData.name
+        
+        if let profilePicUrl: String = cellData.pictureUrl {
+            cell.profilePicture.loadFromUrl(urlString: profilePicUrl)
+            cell.profilePicture.setRoundedImage()
+        }
+        
+        let userGenere: String = cellData.generes.count > 0 ? cellData.generes[0] : ""
+        cell.SubText.text = userGenere
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 
-extension UITextField {
-    func setPadding() {
-        let paddingView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10, height: self.frame.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
-    }
-    
-    func setBottomBorder() {
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect.init(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
-        bottomLine.backgroundColor = UIColor.darkGray.cgColor
-        self.borderStyle = UITextField.BorderStyle.none
-        self.layer.addSublayer(bottomLine)
-    }
-}

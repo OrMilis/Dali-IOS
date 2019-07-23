@@ -3,13 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3C0C288322DF4152004EB351 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C288222DF4152004EB351 /* MapViewController.swift */; };
 		3C227B8222DF53FD007C9498 /* RestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C227B8122DF53FD007C9498 /* RestController.swift */; };
 		3C227B8422DF6C14007C9498 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C227B8322DF6C14007C9498 /* Models.swift */; };
+		3C28A85022E72FF400D299C3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C28A84F22E72FF400D299C3 /* Extensions.swift */; };
+		3C28A85222E759C100D299C3 /* GenericTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C28A85122E759C100D299C3 /* GenericTableViewCell.swift */; };
 		3C2CC1FB22E4FC4100EA833B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2CC1FA22E4FC4100EA833B /* SearchViewController.swift */; };
 		3C74025D22DE9C3D0064EE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C74025C22DE9C3D0064EE99 /* AppDelegate.swift */; };
 		3C74025F22DE9C3D0064EE99 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C74025E22DE9C3D0064EE99 /* art.scnassets */; };
@@ -26,6 +28,8 @@
 		3C0C288222DF4152004EB351 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3C227B8122DF53FD007C9498 /* RestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestController.swift; sourceTree = "<group>"; };
 		3C227B8322DF6C14007C9498 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		3C28A84F22E72FF400D299C3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3C28A85122E759C100D299C3 /* GenericTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewCell.swift; sourceTree = "<group>"; };
 		3C2CC1FA22E4FC4100EA833B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3C74025922DE9C3D0064EE99 /* Dali-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dali-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C74025C22DE9C3D0064EE99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 				3C227B8122DF53FD007C9498 /* RestController.swift */,
 				3C227B8322DF6C14007C9498 /* Models.swift */,
 				3C2CC1FA22E4FC4100EA833B /* SearchViewController.swift */,
+				3C28A84F22E72FF400D299C3 /* Extensions.swift */,
+				3C28A85122E759C100D299C3 /* GenericTableViewCell.swift */,
 			);
 			path = "Dali-ios";
 			sourceTree = "<group>";
@@ -203,8 +209,10 @@
 			files = (
 				3C2CC1FB22E4FC4100EA833B /* SearchViewController.swift in Sources */,
 				3C74026122DE9C3D0064EE99 /* ViewController.swift in Sources */,
+				3C28A85022E72FF400D299C3 /* Extensions.swift in Sources */,
 				3C227B8222DF53FD007C9498 /* RestController.swift in Sources */,
 				3C0C288322DF4152004EB351 /* MapViewController.swift in Sources */,
+				3C28A85222E759C100D299C3 /* GenericTableViewCell.swift in Sources */,
 				3C74025D22DE9C3D0064EE99 /* AppDelegate.swift in Sources */,
 				3C227B8422DF6C14007C9498 /* Models.swift in Sources */,
 			);
