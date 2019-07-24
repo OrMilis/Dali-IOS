@@ -71,6 +71,15 @@ class SearchViewController: UIViewController {
             }
         })
     }
+    
+    func openArtistProfile(artist: Artist) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+        guard let profileViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+        
+        profileViewController.profileData = artist
+        
+        self.navigationController?.pushViewController(profileViewController, animated: true);
+    }
 }
 
 extension SearchViewController: UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -109,6 +118,10 @@ extension SearchViewController: UITextFieldDelegate, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.openArtistProfile(artist: self.searchDataList[indexPath.row])
     }
 }
 
