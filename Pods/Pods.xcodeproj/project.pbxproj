@@ -3,55 +3,145 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		87CDEF3F2292CA524F35FF44E3A28441 /* Pods-Dali-ios-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D47F5D551065FBEA02E5FCC01FEF9496 /* Pods-Dali-ios-dummy.m */; };
-		8FBF403351C830D479800B1F22E2FE78 /* Pods-Dali-ios-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DB63FB74CB3A9D710DDD9EE2C08B870 /* Pods-Dali-ios-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B305C9A38F9AF72BD008C00144161404 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		0ED949D7E644DF7059F28B78B473738E /* ZIPFoundation-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 291F9250BC705A96113EBC52C7CEAF3E /* ZIPFoundation-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14314B8A1AA662A6EF4A0DCD019A4A94 /* FileManager+ZIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6901C4ED48770136AD5337B19499572 /* FileManager+ZIP.swift */; };
+		31C534BA4AA1BCA39912DA794A8DEF4C /* ZIPFoundation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BB08FEDDE86C1F8B936BCE4A10932B /* ZIPFoundation-dummy.m */; };
+		50C8B6A420262B70B0FED7010E997076 /* Pods-Dali-ios-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF139DDAA16741E0E3E92571DFC151D /* Pods-Dali-ios-dummy.m */; };
+		6943A2ED1E1FC9C0E8D8E85A70E389A5 /* Pods-Dali-ios-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EC7DCA351C50ED9BEB015F9752188015 /* Pods-Dali-ios-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6DC2429DE0D74319368C61DA94000CED /* Data+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F865BF03FF5E45BD7FB807E3A3AEF5 /* Data+Serialization.swift */; };
+		7A016FD6E1719D06D5DB3EF4AE901475 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DD086820B261670DB42F6E5B3216A3 /* Data+Compression.swift */; };
+		83F5CD7372F8626ABC9C55C2E4DF841B /* Archive+Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B0AD6F9CAE89226DB12BA54FFDDFD6 /* Archive+Reading.swift */; };
+		8D30087854D054F09A6BF4AFA21200A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		B66C04FE5A299123AF2EA6240AD0964C /* Archive+Writing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA3CFC7D3B97B6E0EEA894936937F56 /* Archive+Writing.swift */; };
+		B7CDE901E99A43E379068D9E798B3190 /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389EFD20FDE1539CFDDE11473A0BF873 /* Archive.swift */; };
+		EE60C7A38F6A965BC6B19DD741AAC70A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		EF635C2CF3208A891CED61ADA53DFF0C /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006564ACD4F713C61552EBFCDD023A09 /* Entry.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A0116FF8BC73B3710BCF95E0D404F9DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA15C8469D67684160CC2A7098EB841C;
+			remoteInfo = ZIPFoundation;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		14DCE5BC1E560E53A96E1522D1A711D8 /* Pods-Dali-ios-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Dali-ios-acknowledgements.markdown"; sourceTree = "<group>"; };
+		006564ACD4F713C61552EBFCDD023A09 /* Entry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Sources/ZIPFoundation/Entry.swift; sourceTree = "<group>"; };
+		1D85019B13C195454FF63B3BFFE60524 /* Pods-Dali-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dali-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		291F9250BC705A96113EBC52C7CEAF3E /* ZIPFoundation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZIPFoundation-umbrella.h"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		389EFD20FDE1539CFDDE11473A0BF873 /* Archive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Archive.swift; path = Sources/ZIPFoundation/Archive.swift; sourceTree = "<group>"; };
 		38DBD329B8624313775C09310FAFCA45 /* Pods_Dali_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Dali_ios.framework; path = "Pods-Dali-ios.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DB63FB74CB3A9D710DDD9EE2C08B870 /* Pods-Dali-ios-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Dali-ios-umbrella.h"; sourceTree = "<group>"; };
-		3ECBDB5B5B5EB0060A9BF0365FA52A50 /* Pods-Dali-ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Dali-ios.modulemap"; sourceTree = "<group>"; };
-		5E1C710BDBBFB087CF3FC9487B0C3C47 /* Pods-Dali-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dali-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		6D49A07B1D20568ECF3369A9EFC8AAF1 /* Pods-Dali-ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Dali-ios-Info.plist"; sourceTree = "<group>"; };
-		8A87B4CC0B4ED7A7376B4B37F61AAB9F /* Pods-Dali-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dali-ios.release.xcconfig"; sourceTree = "<group>"; };
+		48A4A6EDC08C8AC933D0DCD507E9D173 /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZIPFoundation.framework; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55EE4830A9864EC308E68254DEF3D3A9 /* ZIPFoundation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZIPFoundation.xcconfig; sourceTree = "<group>"; };
+		5C160E44A999BCFFCD64B37F6AD493AA /* ZIPFoundation-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZIPFoundation-Info.plist"; sourceTree = "<group>"; };
+		65B0AD6F9CAE89226DB12BA54FFDDFD6 /* Archive+Reading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Archive+Reading.swift"; path = "Sources/ZIPFoundation/Archive+Reading.swift"; sourceTree = "<group>"; };
+		73DD086820B261670DB42F6E5B3216A3 /* Data+Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data+Compression.swift"; path = "Sources/ZIPFoundation/Data+Compression.swift"; sourceTree = "<group>"; };
+		7902A65368CB646CE772DE3BFE90FFFF /* Pods-Dali-ios-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Dali-ios-frameworks.sh"; sourceTree = "<group>"; };
+		84BB08FEDDE86C1F8B936BCE4A10932B /* ZIPFoundation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZIPFoundation-dummy.m"; sourceTree = "<group>"; };
+		88B6DFF62166F23331E3C2D94FC6B004 /* Pods-Dali-ios-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Dali-ios-Info.plist"; sourceTree = "<group>"; };
+		9BA11C799A05C251641F631A1BF6C488 /* Pods-Dali-ios-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Dali-ios-acknowledgements.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		ACBFB6A6F9BD073D79400A3A8D20E6EB /* Pods-Dali-ios-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Dali-ios-acknowledgements.plist"; sourceTree = "<group>"; };
-		D47F5D551065FBEA02E5FCC01FEF9496 /* Pods-Dali-ios-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Dali-ios-dummy.m"; sourceTree = "<group>"; };
+		A9F865BF03FF5E45BD7FB807E3A3AEF5 /* Data+Serialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data+Serialization.swift"; path = "Sources/ZIPFoundation/Data+Serialization.swift"; sourceTree = "<group>"; };
+		B235873873F505B6FF5BDEB20E383EBE /* ZIPFoundation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZIPFoundation-prefix.pch"; sourceTree = "<group>"; };
+		BDF139DDAA16741E0E3E92571DFC151D /* Pods-Dali-ios-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Dali-ios-dummy.m"; sourceTree = "<group>"; };
+		C6901C4ED48770136AD5337B19499572 /* FileManager+ZIP.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FileManager+ZIP.swift"; path = "Sources/ZIPFoundation/FileManager+ZIP.swift"; sourceTree = "<group>"; };
+		CB7872B1263D32BBB95C7C552BEF2071 /* Pods-Dali-ios-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Dali-ios-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D5E3A922B010110781843CA275FCBCDA /* Pods-Dali-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dali-ios.release.xcconfig"; sourceTree = "<group>"; };
+		D751F15F4C334BABF8A76023E7C6E850 /* ZIPFoundation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZIPFoundation.modulemap; sourceTree = "<group>"; };
+		DA5AE770CF6DBD98E2F0541A561ED498 /* Pods-Dali-ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Dali-ios.modulemap"; sourceTree = "<group>"; };
+		EC7DCA351C50ED9BEB015F9752188015 /* Pods-Dali-ios-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Dali-ios-umbrella.h"; sourceTree = "<group>"; };
+		FCA3CFC7D3B97B6E0EEA894936937F56 /* Archive+Writing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Archive+Writing.swift"; path = "Sources/ZIPFoundation/Archive+Writing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A069220B0A605C7B52AAC531DAE040D6 /* Frameworks */ = {
+		40FDEC5C3428857B1C548873575D63AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B305C9A38F9AF72BD008C00144161404 /* Foundation.framework in Frameworks */,
+				8D30087854D054F09A6BF4AFA21200A1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90541CCE93C9C3897B7761A6F043F83E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE60C7A38F6A965BC6B19DD741AAC70A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3CECA2A0FD0B4977094CD56C4E63E0F0 /* Targets Support Files */ = {
+		3727372968A3318B900FDBD40F6F2854 /* ZIPFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				C190265EB43E5F1A220255B83FE848E5 /* Pods-Dali-ios */,
+				389EFD20FDE1539CFDDE11473A0BF873 /* Archive.swift */,
+				65B0AD6F9CAE89226DB12BA54FFDDFD6 /* Archive+Reading.swift */,
+				FCA3CFC7D3B97B6E0EEA894936937F56 /* Archive+Writing.swift */,
+				73DD086820B261670DB42F6E5B3216A3 /* Data+Compression.swift */,
+				A9F865BF03FF5E45BD7FB807E3A3AEF5 /* Data+Serialization.swift */,
+				006564ACD4F713C61552EBFCDD023A09 /* Entry.swift */,
+				C6901C4ED48770136AD5337B19499572 /* FileManager+ZIP.swift */,
+				591AA887A276848449FFA9DC060CFFE7 /* Support Files */,
+			);
+			name = ZIPFoundation;
+			path = ZIPFoundation;
+			sourceTree = "<group>";
+		};
+		591AA887A276848449FFA9DC060CFFE7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D751F15F4C334BABF8A76023E7C6E850 /* ZIPFoundation.modulemap */,
+				55EE4830A9864EC308E68254DEF3D3A9 /* ZIPFoundation.xcconfig */,
+				84BB08FEDDE86C1F8B936BCE4A10932B /* ZIPFoundation-dummy.m */,
+				5C160E44A999BCFFCD64B37F6AD493AA /* ZIPFoundation-Info.plist */,
+				B235873873F505B6FF5BDEB20E383EBE /* ZIPFoundation-prefix.pch */,
+				291F9250BC705A96113EBC52C7CEAF3E /* ZIPFoundation-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ZIPFoundation";
+			sourceTree = "<group>";
+		};
+		59BC01952956014719756649E7FF4690 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A1312802CEDE5AF3E6196686B4859037 /* Pods-Dali-ios */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		B7A4871419925F5E70A715446E3E1785 /* Products */ = {
+		6FAA6AD3E79BFAA8E0D0C6750C9AE93D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				38DBD329B8624313775C09310FAFCA45 /* Pods_Dali_ios.framework */,
+				3727372968A3318B900FDBD40F6F2854 /* ZIPFoundation */,
 			);
-			name = Products;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A1312802CEDE5AF3E6196686B4859037 /* Pods-Dali-ios */ = {
+			isa = PBXGroup;
+			children = (
+				DA5AE770CF6DBD98E2F0541A561ED498 /* Pods-Dali-ios.modulemap */,
+				CB7872B1263D32BBB95C7C552BEF2071 /* Pods-Dali-ios-acknowledgements.markdown */,
+				9BA11C799A05C251641F631A1BF6C488 /* Pods-Dali-ios-acknowledgements.plist */,
+				BDF139DDAA16741E0E3E92571DFC151D /* Pods-Dali-ios-dummy.m */,
+				7902A65368CB646CE772DE3BFE90FFFF /* Pods-Dali-ios-frameworks.sh */,
+				88B6DFF62166F23331E3C2D94FC6B004 /* Pods-Dali-ios-Info.plist */,
+				EC7DCA351C50ED9BEB015F9752188015 /* Pods-Dali-ios-umbrella.h */,
+				1D85019B13C195454FF63B3BFFE60524 /* Pods-Dali-ios.debug.xcconfig */,
+				D5E3A922B010110781843CA275FCBCDA /* Pods-Dali-ios.release.xcconfig */,
+			);
+			name = "Pods-Dali-ios";
+			path = "Target Support Files/Pods-Dali-ios";
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -62,29 +152,14 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		C190265EB43E5F1A220255B83FE848E5 /* Pods-Dali-ios */ = {
-			isa = PBXGroup;
-			children = (
-				3ECBDB5B5B5EB0060A9BF0365FA52A50 /* Pods-Dali-ios.modulemap */,
-				14DCE5BC1E560E53A96E1522D1A711D8 /* Pods-Dali-ios-acknowledgements.markdown */,
-				ACBFB6A6F9BD073D79400A3A8D20E6EB /* Pods-Dali-ios-acknowledgements.plist */,
-				D47F5D551065FBEA02E5FCC01FEF9496 /* Pods-Dali-ios-dummy.m */,
-				6D49A07B1D20568ECF3369A9EFC8AAF1 /* Pods-Dali-ios-Info.plist */,
-				3DB63FB74CB3A9D710DDD9EE2C08B870 /* Pods-Dali-ios-umbrella.h */,
-				5E1C710BDBBFB087CF3FC9487B0C3C47 /* Pods-Dali-ios.debug.xcconfig */,
-				8A87B4CC0B4ED7A7376B4B37F61AAB9F /* Pods-Dali-ios.release.xcconfig */,
-			);
-			name = "Pods-Dali-ios";
-			path = "Target Support Files/Pods-Dali-ios";
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				B7A4871419925F5E70A715446E3E1785 /* Products */,
-				3CECA2A0FD0B4977094CD56C4E63E0F0 /* Targets Support Files */,
+				6FAA6AD3E79BFAA8E0D0C6750C9AE93D /* Pods */,
+				E21341797055D5AD11094988775F7ED5 /* Products */,
+				59BC01952956014719756649E7FF4690 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,14 +171,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E21341797055D5AD11094988775F7ED5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38DBD329B8624313775C09310FAFCA45 /* Pods_Dali_ios.framework */,
+				48A4A6EDC08C8AC933D0DCD507E9D173 /* ZIPFoundation.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		BD47729D662B07370ECA238164E06D36 /* Headers */ = {
+		4E27EB027ABF34703715F3A9000D0F27 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FBF403351C830D479800B1F22E2FE78 /* Pods-Dali-ios-umbrella.h in Headers */,
+				6943A2ED1E1FC9C0E8D8E85A70E389A5 /* Pods-Dali-ios-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE8609EF84FE85531FFC606B872F0023 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ED949D7E644DF7059F28B78B473738E /* ZIPFoundation-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,20 +204,39 @@
 /* Begin PBXNativeTarget section */
 		2176C9D651CBB080E608F155E1B3F388 /* Pods-Dali-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9894DD786DD3B015D183F6AAA1AAA5C8 /* Build configuration list for PBXNativeTarget "Pods-Dali-ios" */;
+			buildConfigurationList = B0D58811088B46DB078F18869D1E17EE /* Build configuration list for PBXNativeTarget "Pods-Dali-ios" */;
 			buildPhases = (
-				BD47729D662B07370ECA238164E06D36 /* Headers */,
-				FB9AA9850EAF4069DD515F642A36C384 /* Sources */,
-				A069220B0A605C7B52AAC531DAE040D6 /* Frameworks */,
-				0FE93C27402031440123CEE0B926D223 /* Resources */,
+				4E27EB027ABF34703715F3A9000D0F27 /* Headers */,
+				8F6A6F2F48981AA150145F74804218E8 /* Sources */,
+				90541CCE93C9C3897B7761A6F043F83E /* Frameworks */,
+				C02DC4F6F7A099021807DD10B64AD3E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C13500093FAD8B7DB9AC05A71545D6B9 /* PBXTargetDependency */,
+			);
+			name = "Pods-Dali-ios";
+			productName = "Pods-Dali-ios";
+			productReference = 38DBD329B8624313775C09310FAFCA45 /* Pods_Dali_ios.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AA15C8469D67684160CC2A7098EB841C /* ZIPFoundation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF47FFBBEB94688E9370E59534624640 /* Build configuration list for PBXNativeTarget "ZIPFoundation" */;
+			buildPhases = (
+				EE8609EF84FE85531FFC606B872F0023 /* Headers */,
+				CF7AFB7AB158245A0276451D9E7E870B /* Sources */,
+				40FDEC5C3428857B1C548873575D63AD /* Frameworks */,
+				2C425EB22DD214DFC62E4C098AD9ADA2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-Dali-ios";
-			productName = "Pods-Dali-ios";
-			productReference = 38DBD329B8624313775C09310FAFCA45 /* Pods_Dali_ios.framework */;
+			name = ZIPFoundation;
+			productName = ZIPFoundation;
+			productReference = 48A4A6EDC08C8AC933D0DCD507E9D173 /* ZIPFoundation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -138,24 +249,32 @@
 				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = B7A4871419925F5E70A715446E3E1785 /* Products */;
+			productRefGroup = E21341797055D5AD11094988775F7ED5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				2176C9D651CBB080E608F155E1B3F388 /* Pods-Dali-ios */,
+				AA15C8469D67684160CC2A7098EB841C /* ZIPFoundation */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0FE93C27402031440123CEE0B926D223 /* Resources */ = {
+		2C425EB22DD214DFC62E4C098AD9ADA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C02DC4F6F7A099021807DD10B64AD3E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -165,17 +284,80 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FB9AA9850EAF4069DD515F642A36C384 /* Sources */ = {
+		8F6A6F2F48981AA150145F74804218E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87CDEF3F2292CA524F35FF44E3A28441 /* Pods-Dali-ios-dummy.m in Sources */,
+				50C8B6A420262B70B0FED7010E997076 /* Pods-Dali-ios-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF7AFB7AB158245A0276451D9E7E870B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F5CD7372F8626ABC9C55C2E4DF841B /* Archive+Reading.swift in Sources */,
+				B66C04FE5A299123AF2EA6240AD0964C /* Archive+Writing.swift in Sources */,
+				B7CDE901E99A43E379068D9E798B3190 /* Archive.swift in Sources */,
+				7A016FD6E1719D06D5DB3EF4AE901475 /* Data+Compression.swift in Sources */,
+				6DC2429DE0D74319368C61DA94000CED /* Data+Serialization.swift in Sources */,
+				EF635C2CF3208A891CED61ADA53DFF0C /* Entry.swift in Sources */,
+				14314B8A1AA662A6EF4A0DCD019A4A94 /* FileManager+ZIP.swift in Sources */,
+				31C534BA4AA1BCA39912DA794A8DEF4C /* ZIPFoundation-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C13500093FAD8B7DB9AC05A71545D6B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZIPFoundation;
+			target = AA15C8469D67684160CC2A7098EB841C /* ZIPFoundation */;
+			targetProxy = A0116FF8BC73B3710BCF95E0D404F9DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		059366A44188864E665A2E621572546C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5E3A922B010110781843CA275FCBCDA /* Pods-Dali-ios.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Dali-ios/Pods-Dali-ios-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Dali-ios/Pods-Dali-ios.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		32C2FB3BD9A2402E2347CE50F405010A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -235,6 +417,44 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
+		};
+		3FC04CF02DA6C7BF25DC391306C0A0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D85019B13C195454FF63B3BFFE60524 /* Pods-Dali-ios.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Dali-ios/Pods-Dali-ios-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Dali-ios/Pods-Dali-ios.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		65E8432CA1AC1817F746BE6B5C4F067E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -300,12 +520,10 @@
 			};
 			name = Debug;
 		};
-		66E1E0FFA9DCABA74D9F062CF0375668 /* Debug */ = {
+		9D78963D0039879A1C99C220903814EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E1C710BDBBFB087CF3FC9487B0C3C47 /* Pods-Dali-ios.debug.xcconfig */;
+			baseConfigurationReference = 55EE4830A9864EC308E68254DEF3D3A9 /* ZIPFoundation.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -315,35 +533,32 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Dali-ios/Pods-Dali-ios-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/ZIPFoundation/ZIPFoundation-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ZIPFoundation/ZIPFoundation-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Dali-ios/Pods-Dali-ios.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/ZIPFoundation/ZIPFoundation.modulemap";
+				PRODUCT_MODULE_NAME = ZIPFoundation;
+				PRODUCT_NAME = ZIPFoundation;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		C83C69DEF30C73747746275A9E366C6D /* Release */ = {
+		CBBD2D8506425579302E67C5B74E87E1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A87B4CC0B4ED7A7376B4B37F61AAB9F /* Pods-Dali-ios.release.xcconfig */;
+			baseConfigurationReference = 55EE4830A9864EC308E68254DEF3D3A9 /* ZIPFoundation.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -353,23 +568,22 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Dali-ios/Pods-Dali-ios-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/ZIPFoundation/ZIPFoundation-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ZIPFoundation/ZIPFoundation-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Dali-ios/Pods-Dali-ios.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/ZIPFoundation/ZIPFoundation.modulemap";
+				PRODUCT_MODULE_NAME = ZIPFoundation;
+				PRODUCT_NAME = ZIPFoundation;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -389,11 +603,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9894DD786DD3B015D183F6AAA1AAA5C8 /* Build configuration list for PBXNativeTarget "Pods-Dali-ios" */ = {
+		B0D58811088B46DB078F18869D1E17EE /* Build configuration list for PBXNativeTarget "Pods-Dali-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66E1E0FFA9DCABA74D9F062CF0375668 /* Debug */,
-				C83C69DEF30C73747746275A9E366C6D /* Release */,
+				3FC04CF02DA6C7BF25DC391306C0A0F1 /* Debug */,
+				059366A44188864E665A2E621572546C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF47FFBBEB94688E9370E59534624640 /* Build configuration list for PBXNativeTarget "ZIPFoundation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D78963D0039879A1C99C220903814EE /* Debug */,
+				CBBD2D8506425579302E67C5B74E87E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -132,6 +132,7 @@
 				3C74025522DE9C3C0064EE99 /* Sources */,
 				3C74025622DE9C3C0064EE99 /* Frameworks */,
 				3C74025722DE9C3C0064EE99 /* Resources */,
+				29016E2E0BCAD8C6B846E1AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,6 +191,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		29016E2E0BCAD8C6B846E1AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F590FE1B7C9017A70029F3EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

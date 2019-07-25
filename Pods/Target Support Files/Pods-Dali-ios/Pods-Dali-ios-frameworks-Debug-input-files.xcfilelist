@@ -1,3 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-frameworks.sh
-${BUILT_PRODUCTS_DIR}/GLTFSceneKit/GLTFSceneKit.framework
-${BUILT_PRODUCTS_DIR}/SamMitiAR/SamMitiAR.framework
+${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework

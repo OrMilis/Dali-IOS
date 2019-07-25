@@ -6,5 +6,5 @@ target 'Dali-ios' do
   use_frameworks!
 
   # Pods for Dali-ios
-
+	pod 'ZIPFoundation', '~> 0.9'
 end
