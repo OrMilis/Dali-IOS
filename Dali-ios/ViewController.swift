@@ -8,7 +8,9 @@
 
 import UIKit
 import SceneKit
+import SceneKit.ModelIO
 import ARKit
+import ModelIO
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
@@ -25,6 +27,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.automaticallyUpdatesLighting = true
         
         addTapGestureToSceneView()
+        
+        clearTempArtFiles()
+        getArtworkFiles(artworkPath: "project-dali.com/data/files/115528235345908255360/Beagle.zip")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,16 +132,72 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         print("Trans: ", translation)
         
-        /*guard let shipScene = SCNScene(named: "scene.usdz", inDirectory: "art.scnassets"),
-            let shipNode = shipScene.rootNode.childNode(withName: "ship", recursively: false)
+        let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks") // FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let destinationDirectoryURL = tempArtworksPath.appendingPathComponent("Beagle"/*artwork.name*/)
+        let destinationFileUrl = destinationDirectoryURL.appendingPathComponent("Beagle.scn")
+        
+        //print("FileUrl: ", destinationFileUrl)
+        
+        /*let asset = MDLAsset(url: destinationFileUrl)
+        let object = asset.object(at: 0)
+        let shipNode = SCNNode(mdlObject: object)*/
+        
+        guard let shipScene = try? SCNScene(url: destinationFileUrl, options: nil)
             else { return }
+        let shipNode = shipScene.rootNode.childNodes[0]
+        
+        /*guard let shipScene = SCNScene(named: "Beagle.dae", inDirectory: "art.scnassets", options: nil),
+            let shipNode = shipScene.rootNode.childNode(withName: "ship", recursively: false)
+            else { return }*/
+        
+        /*guard let shipScene = SCNScene(named: "Beagle.scn", inDirectory: "art.scnassets", options: nil)
+            else { return }
+        let shipNode = shipScene.rootNode.childNodes[0]*/
         
         shipNode.position = SCNVector3(x,y,z)
-        sceneView.scene.rootNode.addChildNode(shipNode)*/
+        sceneView.scene.rootNode.addChildNode(shipNode)
     }
     
     func addTapGestureToSceneView() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.addShipToSceneView(withGestureRecognizer:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func getArtworkFiles(artworkPath: String /*_ artwork: Artwork*/) {
+        guard let url = URL(string: "http://" + artworkPath/*artwork.path*/) else { return }
+        
+        let task = URLSession.shared.downloadTask(with: url) { localURL, urlResponse, error in
+            if let fileUrl = localURL {
+                let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks") // FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let destinationDirectoryURL = tempArtworksPath.appendingPathComponent("Beagle"/*artwork.name*/)
+                let destinationFileUrl = destinationDirectoryURL.appendingPathComponent(urlResponse?.suggestedFilename ?? fileUrl.lastPathComponent)
+                
+                try? FileManager.default.removeItem(at: destinationDirectoryURL)
+                
+                do {
+                    try FileManager.default.createDirectory(at: destinationDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+                    try FileManager.default.copyItem(at: fileUrl, to: destinationFileUrl)
+                    try FileManager.default.unzipItem(at: destinationFileUrl, to: destinationDirectoryURL)
+                    print("Finished Download")
+                    print("Path: ", destinationFileUrl)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func clearTempArtFiles() {
+        let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks")
+        do {
+            let filesUrl = try FileManager.default.contentsOfDirectory(at: tempArtworksPath, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            filesUrl.forEach({ url in
+                try? FileManager.default.removeItem(at: url)
+            })
+        } catch let err {
+            print(err)
+        }
     }
 }

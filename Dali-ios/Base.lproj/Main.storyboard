@@ -59,11 +59,12 @@
                         <outlet property="mapView" destination="wMc-aS-6H4" id="3iA-fd-PCm"/>
                         <segue destination="sO7-Mt-5DC" kind="show" id="jxO-pC-c24"/>
                         <segue destination="Nle-KQ-hbF" kind="show" id="3gj-b1-Cwz"/>
+                        <segue destination="BV1-FR-VrT" kind="show" id="VNL-Gi-PBH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckQ-gT-d7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-159" y="130"/>
+            <point key="canvasLocation" x="-114" y="130"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="bTC-xD-Jga">
@@ -283,7 +284,7 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="Dali_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ARView" id="BV1-FR-VrT" customClass="ViewController" customModule="Dali_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
