@@ -26,6 +26,8 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        
         self.mapView.showsUserLocation = true
         self.mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         
@@ -45,7 +47,7 @@ class MapViewController: UIViewController {
     @IBAction func onBtnClick(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let searchViewController = storyBoard.instantiateViewController(withIdentifier: "ARView") as? ViewController else { return }
-        
+        searchViewController.setDataForView(artworks: self.artworks)
         self.navigationController?.pushViewController(searchViewController, animated: true)
     }
     
@@ -68,8 +70,8 @@ extension MapViewController: CLLocationManagerDelegate {
         RestController.getArtworkByLocation(latitude: location.latitude, longitude: location.longitude, completion: { (res) in
             switch res {
             case .success(let genData):
-                self.artworks = genData
-                genData.forEach({ (artwork) in
+                self.artworks = genData.filter({ $0.path.hasSuffix(".zip") })
+                self.artworks.forEach({ (artwork) in
                     let annotation = MKPointAnnotation();
                     annotation.coordinate = artwork.getLocationCoordinate()
                     annotation.title = artwork.name

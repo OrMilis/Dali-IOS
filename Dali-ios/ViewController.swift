@@ -8,28 +8,35 @@
 
 import UIKit
 import SceneKit
-import SceneKit.ModelIO
 import ARKit
-import ModelIO
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var artworks: [Artwork] = [Artwork]()
+    var downloadedArtworks = [Bool]()
+    var selectedArtwork: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.collectionView.isPagingEnabled = true
+        self.collectionView.alwaysBounceHorizontal = false
+        
         sceneView.delegate = self
         sceneView.scene = SCNScene()
         sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
-        sceneView.showsStatistics = true
+        //sceneView.showsStatistics = true
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
         
         addTapGestureToSceneView()
         
         clearTempArtFiles()
-        getArtworkFiles(artworkPath: "project-dali.com/data/files/115528235345908255360/Beagle.zip")
+        getArtworkFiles(artworks[0])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,19 +53,46 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Pause the view's session
         sceneView.session.pause()
+        clearTempArtFiles()
+    }
+    
+    func setDataForView(artworks: [Artwork]) {
+        self.artworks = artworks
+        self.downloadedArtworks = Array(repeating: false, count: artworks.count)
+        dump(downloadedArtworks)
+    }
+    
+    func loadSelectedArtwork() {
+        
+        if !downloadedArtworks[selectedArtwork] {
+            getArtworkFiles(artworks[selectedArtwork])
+        } else {
+            print("In cache")
+        }
+    }
+    
+    func resetSceneNodes() {
+        sceneView.scene.rootNode.childNodes.forEach({node in
+            if node.name != nil {
+                node.removeFromParentNode()
+            }
+        })
+    }
+    
+    @IBAction func onPageValueChanged(_ sender: UIPageControl) {
+        self.collectionView
+            .scrollRectToVisible(CGRect(
+                x: Int(self.collectionView.frame.size.width) * self.pageControl.currentPage,
+                y: 0,
+                width:Int(self.collectionView.frame.size.width),
+                height: Int(self.collectionView.frame.size.height)), animated: true)
+        
+        self.selectedArtwork = self.pageControl.currentPage
+        loadSelectedArtwork()
+        resetSceneNodes()
     }
     
     // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
-    
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
@@ -120,7 +154,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         planeNode.position = SCNVector3(x, y, z)
     }
     
-    @objc func addShipToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
+    @objc func addArtworkToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
+        
+        resetSceneNodes()
+        
         let tapLocation = recognizer.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         
@@ -132,44 +169,32 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         print("Trans: ", translation)
         
-        let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks") // FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let destinationDirectoryURL = tempArtworksPath.appendingPathComponent("Beagle"/*artwork.name*/)
-        let destinationFileUrl = destinationDirectoryURL.appendingPathComponent("Beagle.scn")
+        let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks")
+        let destinationDirectoryURL = tempArtworksPath.appendingPathComponent(artworks[selectedArtwork].name)
+        let files = try? FileManager.default.contentsOfDirectory(atPath: destinationDirectoryURL.path)
+        guard let sceneFile = files!.first(where: { $0.hasSuffix(".scn") }) else { return }
+        let destinationFileUrl = destinationDirectoryURL.appendingPathComponent(sceneFile)
         
-        //print("FileUrl: ", destinationFileUrl)
-        
-        /*let asset = MDLAsset(url: destinationFileUrl)
-        let object = asset.object(at: 0)
-        let shipNode = SCNNode(mdlObject: object)*/
-        
-        guard let shipScene = try? SCNScene(url: destinationFileUrl, options: nil)
+        guard let artworkScene = try? SCNScene(url: destinationFileUrl, options: nil)
             else { return }
-        let shipNode = shipScene.rootNode.childNodes[0]
+        let artworkNode = artworkScene.rootNode.childNodes[0]
         
-        /*guard let shipScene = SCNScene(named: "Beagle.dae", inDirectory: "art.scnassets", options: nil),
-            let shipNode = shipScene.rootNode.childNode(withName: "ship", recursively: false)
-            else { return }*/
-        
-        /*guard let shipScene = SCNScene(named: "Beagle.scn", inDirectory: "art.scnassets", options: nil)
-            else { return }
-        let shipNode = shipScene.rootNode.childNodes[0]*/
-        
-        shipNode.position = SCNVector3(x,y,z)
-        sceneView.scene.rootNode.addChildNode(shipNode)
+        artworkNode.position = SCNVector3(x,y,z)
+        sceneView.scene.rootNode.addChildNode(artworkNode)
     }
     
     func addTapGestureToSceneView() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.addShipToSceneView(withGestureRecognizer:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.addArtworkToSceneView(withGestureRecognizer:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    func getArtworkFiles(artworkPath: String /*_ artwork: Artwork*/) {
-        guard let url = URL(string: "http://" + artworkPath/*artwork.path*/) else { return }
+    func getArtworkFiles(_ artwork: Artwork) {
+        guard let url = URL(string: "http://" + artwork.path) else { return }
         
         let task = URLSession.shared.downloadTask(with: url) { localURL, urlResponse, error in
             if let fileUrl = localURL {
-                let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks") // FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                let destinationDirectoryURL = tempArtworksPath.appendingPathComponent("Beagle"/*artwork.name*/)
+                let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks")
+                let destinationDirectoryURL = tempArtworksPath.appendingPathComponent(artwork.name)
                 let destinationFileUrl = destinationDirectoryURL.appendingPathComponent(urlResponse?.suggestedFilename ?? fileUrl.lastPathComponent)
                 
                 try? FileManager.default.removeItem(at: destinationDirectoryURL)
@@ -178,8 +203,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                     try FileManager.default.createDirectory(at: destinationDirectoryURL, withIntermediateDirectories: true, attributes: nil)
                     try FileManager.default.copyItem(at: fileUrl, to: destinationFileUrl)
                     try FileManager.default.unzipItem(at: destinationFileUrl, to: destinationDirectoryURL)
-                    print("Finished Download")
-                    print("Path: ", destinationFileUrl)
+                    self.downloadedArtworks[self.selectedArtwork] = true
+                    dump(self.downloadedArtworks)
                 } catch let error {
                     print(error)
                 }
@@ -200,4 +225,41 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             print(err)
         }
     }
+}
+
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        self.pageControl.numberOfPages = self.artworks.count
+        return self.artworks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cellData = self.artworks[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ArtworkPage", for: indexPath) as! ArtworkInfoCell
+        
+        cell.artworkName.text = cellData.name
+        cell.artistName.text = cellData.artistName
+        if let artistPicUrl = cellData.artistPicture {
+            cell.artistPicture.loadFromUrl(urlString: artistPicUrl)
+            cell.artistPicture.setRoundedImage()
+        }
+        
+        return cell
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        scrollView.isUserInteractionEnabled = false;
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollView.isUserInteractionEnabled = true
+        let selectedIndex = Int(round(scrollView.contentOffset.x/view.frame.width))
+        if self.pageControl.currentPage != selectedIndex {
+            self.pageControl.currentPage = selectedIndex
+            self.selectedArtwork = selectedIndex
+            loadSelectedArtwork()
+            resetSceneNodes()
+        }
+    }
+    
 }

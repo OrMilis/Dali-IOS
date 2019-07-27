@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,9 @@
 		3C0CB02222E91431000B7546 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CB02122E91431000B7546 /* ProfileTabViewController.swift */; };
 		3C0CB02422E92516000B7546 /* ListTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CB02322E92516000B7546 /* ListTabViewController.swift */; };
 		3C0CB02622E92527000B7546 /* MapTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CB02522E92527000B7546 /* MapTabViewController.swift */; };
+		3C1DC6F322ECCAA90095EE37 /* ArtworkPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1DC6F222ECCAA90095EE37 /* ArtworkPageView.swift */; };
+		3C1DC6F522ECCAC80095EE37 /* ArtworkPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C1DC6F422ECCAC80095EE37 /* ArtworkPageView.xib */; };
+		3C1DC6F722ECD83E0095EE37 /* ArtworkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1DC6F622ECD83E0095EE37 /* ArtworkInfoCell.swift */; };
 		3C227B8222DF53FD007C9498 /* RestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C227B8122DF53FD007C9498 /* RestController.swift */; };
 		3C227B8422DF6C14007C9498 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C227B8322DF6C14007C9498 /* Models.swift */; };
 		3C28A85022E72FF400D299C3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C28A84F22E72FF400D299C3 /* Extensions.swift */; };
@@ -33,6 +36,9 @@
 		3C0CB02122E91431000B7546 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		3C0CB02322E92516000B7546 /* ListTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTabViewController.swift; sourceTree = "<group>"; };
 		3C0CB02522E92527000B7546 /* MapTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTabViewController.swift; sourceTree = "<group>"; };
+		3C1DC6F222ECCAA90095EE37 /* ArtworkPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkPageView.swift; sourceTree = "<group>"; };
+		3C1DC6F422ECCAC80095EE37 /* ArtworkPageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArtworkPageView.xib; sourceTree = "<group>"; };
+		3C1DC6F622ECD83E0095EE37 /* ArtworkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkInfoCell.swift; sourceTree = "<group>"; };
 		3C227B8122DF53FD007C9498 /* RestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestController.swift; sourceTree = "<group>"; };
 		3C227B8322DF6C14007C9498 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		3C28A84F22E72FF400D299C3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -100,6 +106,9 @@
 				3C0CB02122E91431000B7546 /* ProfileTabViewController.swift */,
 				3C0CB02322E92516000B7546 /* ListTabViewController.swift */,
 				3C0CB02522E92527000B7546 /* MapTabViewController.swift */,
+				3C1DC6F222ECCAA90095EE37 /* ArtworkPageView.swift */,
+				3C1DC6F422ECCAC80095EE37 /* ArtworkPageView.xib */,
+				3C1DC6F622ECD83E0095EE37 /* ArtworkInfoCell.swift */,
 			);
 			path = "Dali-ios";
 			sourceTree = "<group>";
@@ -183,6 +192,7 @@
 			files = (
 				3C74025F22DE9C3D0064EE99 /* art.scnassets in Resources */,
 				3C74026922DE9C3F0064EE99 /* LaunchScreen.storyboard in Resources */,
+				3C1DC6F522ECCAC80095EE37 /* ArtworkPageView.xib in Resources */,
 				3C74026622DE9C3F0064EE99 /* Assets.xcassets in Resources */,
 				3C74026422DE9C3D0064EE99 /* Main.storyboard in Resources */,
 			);
@@ -240,11 +250,13 @@
 				3C2CC1FB22E4FC4100EA833B /* SearchViewController.swift in Sources */,
 				3C0CB02622E92527000B7546 /* MapTabViewController.swift in Sources */,
 				3C74026122DE9C3D0064EE99 /* ViewController.swift in Sources */,
+				3C1DC6F722ECD83E0095EE37 /* ArtworkInfoCell.swift in Sources */,
 				3C28A85022E72FF400D299C3 /* Extensions.swift in Sources */,
 				3C227B8222DF53FD007C9498 /* RestController.swift in Sources */,
 				3C0CB02422E92516000B7546 /* ListTabViewController.swift in Sources */,
 				3C0C288322DF4152004EB351 /* MapViewController.swift in Sources */,
 				3C28A85222E759C100D299C3 /* GenericTableViewCell.swift in Sources */,
+				3C1DC6F322ECCAA90095EE37 /* ArtworkPageView.swift in Sources */,
 				3C28A85422E7C55900D299C3 /* ProfileViewController.swift in Sources */,
 				3C74025D22DE9C3D0064EE99 /* AppDelegate.swift in Sources */,
 				3C0CB02222E91431000B7546 /* ProfileTabViewController.swift in Sources */,
