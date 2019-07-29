@@ -10,7 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ArViewController: UIViewController, ARSCNViewDelegate {
+    
+    public static let identifier: String = "ARView"
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -19,6 +21,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var artworks: [Artwork] = [Artwork]()
     var downloadedArtworks = [Bool]()
     var selectedArtwork: Int = 0
+    var isShowingArt = false
+    var centerOfScreen: CGPoint = CGPoint()
+    var selectedNode: SCNNode?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +39,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
         
-        addTapGestureToSceneView()
+        //addTapGestureToSceneView()
         
         clearTempArtFiles()
-        getArtworkFiles(artworks[0])
+        
+        if artworks.count > 0 {
+            loadSelectedArtwork()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        centerOfScreen = self.view.center
         
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
@@ -63,7 +74,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func loadSelectedArtwork() {
-        
+        isShowingArt = false
         if !downloadedArtworks[selectedArtwork] {
             getArtworkFiles(artworks[selectedArtwork])
         } else {
@@ -118,7 +129,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let plane = SCNPlane(width: width, height: height)
         
         // 3
-        plane.materials.first?.diffuse.contents = UIColor.init(red: 0.0, green: 0.0, blue: 1, alpha: 0.2)
+        plane.materials.first?.diffuse.contents = UIImage(named: "crissxcross")/*UIColor.init(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.2)*/
         
         // 4
         let planeNode = SCNNode(geometry: plane)
@@ -135,58 +146,71 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        // 1
-        guard let planeAnchor = anchor as?  ARPlaneAnchor,
-            let planeNode = node.childNodes.first,
-            let plane = planeNode.geometry as? SCNPlane
-            else { return }
+        //Must be in different thread. SCNScene can't be called in renderer callback.
+        DispatchQueue.main.async {
+            if !self.isShowingArt {
+                self.isShowingArt = true
+                addArtworkToSceneView()
+            }
+            
+            // 1
+            guard let planeAnchor = anchor as?  ARPlaneAnchor,
+                let planeNode = node.childNodes.first,
+                let plane = planeNode.geometry as? SCNPlane
+                else { return }
+            
+            // 2
+            let width = CGFloat(planeAnchor.extent.x)
+            let height = CGFloat(planeAnchor.extent.z)
+            plane.width = width
+            plane.height = height
+            
+            // 3
+            let x = CGFloat(planeAnchor.center.x)
+            let y = CGFloat(planeAnchor.center.y)
+            let z = CGFloat(planeAnchor.center.z)
+            planeNode.position = SCNVector3(x, y, z)
+        }
         
-        // 2
-        let width = CGFloat(planeAnchor.extent.x)
-        let height = CGFloat(planeAnchor.extent.z)
-        plane.width = width
-        plane.height = height
-        
-        // 3
-        let x = CGFloat(planeAnchor.center.x)
-        let y = CGFloat(planeAnchor.center.y)
-        let z = CGFloat(planeAnchor.center.z)
-        planeNode.position = SCNVector3(x, y, z)
+        func addArtworkToSceneView(/*withGestureRecognizer recognizer: UIGestureRecognizer*/) {
+            //let tapLocation = recognizer.location(in: sceneView)
+            let hitTestResults = sceneView.hitTest(centerOfScreen, types: .existingPlaneUsingExtent)
+            
+            guard let hitTestResult = hitTestResults.first else {
+                isShowingArt = false
+                return
+            }
+            let translation = hitTestResult.worldTransform.columns.3
+            let x = translation.x
+            let y = translation.y
+            let z = translation.z
+            
+            resetSceneNodes()
+            
+            let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks")
+            let destinationDirectoryURL = tempArtworksPath.appendingPathComponent(artworks[selectedArtwork].name)
+            let files = try? FileManager.default.contentsOfDirectory(atPath: destinationDirectoryURL.path)
+            guard let sceneFile = files?.first(where: { $0.hasSuffix(".scn") }) else {
+                isShowingArt = false
+                return
+            }
+            let destinationFileUrl = destinationDirectoryURL.appendingPathComponent(sceneFile)
+            
+            guard let artworkScene = try? SCNScene(url: destinationFileUrl, options: nil) else {
+                isShowingArt = false
+                return
+            }
+            let artworkNode = artworkScene.rootNode.childNodes[0]
+            
+            artworkNode.position = SCNVector3(x,y,z)
+            sceneView.scene.rootNode.addChildNode(artworkNode)
+        }
     }
     
-    @objc func addArtworkToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
-        
-        resetSceneNodes()
-        
-        let tapLocation = recognizer.location(in: sceneView)
-        let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
-        
-        guard let hitTestResult = hitTestResults.first else { return }
-        let translation = hitTestResult.worldTransform.columns.3
-        let x = translation.x
-        let y = translation.y
-        let z = translation.z
-        
-        print("Trans: ", translation)
-        
-        let tempArtworksPath = FileManager.default.temporaryDirectory.appendingPathComponent("tempArtworks")
-        let destinationDirectoryURL = tempArtworksPath.appendingPathComponent(artworks[selectedArtwork].name)
-        let files = try? FileManager.default.contentsOfDirectory(atPath: destinationDirectoryURL.path)
-        guard let sceneFile = files!.first(where: { $0.hasSuffix(".scn") }) else { return }
-        let destinationFileUrl = destinationDirectoryURL.appendingPathComponent(sceneFile)
-        
-        guard let artworkScene = try? SCNScene(url: destinationFileUrl, options: nil)
-            else { return }
-        let artworkNode = artworkScene.rootNode.childNodes[0]
-        
-        artworkNode.position = SCNVector3(x,y,z)
-        sceneView.scene.rootNode.addChildNode(artworkNode)
-    }
-    
-    func addTapGestureToSceneView() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.addArtworkToSceneView(withGestureRecognizer:)))
+    /*func addTapGestureToSceneView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ArViewController.addArtworkToSceneView(withGestureRecognizer:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
-    }
+    }*/
     
     func getArtworkFiles(_ artwork: Artwork) {
         guard let url = URL(string: "http://" + artwork.path) else { return }
@@ -227,7 +251,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ArViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.pageControl.numberOfPages = self.artworks.count
         return self.artworks.count

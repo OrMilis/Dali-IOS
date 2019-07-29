@@ -13,6 +13,8 @@ import ZIPFoundation
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var ArViewBtn: UIButton!
+    @IBOutlet weak var SearchViewBtn: UIButton!
     
     let locationManager = CLLocationManager()
     
@@ -25,6 +27,11 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        ArViewBtn.imageView?.setRoundedImage()
+        ArViewBtn.setShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor, offset: CGSize(width: 0.0, height: 3.0), opacity: 0.25, radius: 10.0)
+        
+        SearchViewBtn.imageView?.setRoundedImage()
+        SearchViewBtn.setShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor, offset: CGSize(width: 0.0, height: 3.0), opacity: 0.25, radius: 10.0)
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         
@@ -44,13 +51,20 @@ class MapViewController: UIViewController {
         
     }
     
-    @IBAction func onBtnClick(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let searchViewController = storyBoard.instantiateViewController(withIdentifier: "ARView") as? ViewController else { return }
-        searchViewController.setDataForView(artworks: self.artworks)
-        self.navigationController?.pushViewController(searchViewController, animated: true)
+    @IBAction func openARView(_ sender: Any) {
+        if self.artworks.count > 0 {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let arViewController = storyBoard.instantiateViewController(withIdentifier: ArViewController.identifier) as? ArViewController else { return }
+            arViewController.setDataForView(artworks: self.artworks)
+            self.navigationController?.pushViewController(arViewController, animated: true)
+        }
     }
     
+    @IBAction func openSearchView(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let searchViewController = storyBoard.instantiateViewController(withIdentifier: SearchViewController.identifier) as? SearchViewController else { return }
+        self.navigationController?.pushViewController(searchViewController, animated: true)
+    }
     /*
     // MARK: - Navigation
 
@@ -71,7 +85,7 @@ extension MapViewController: CLLocationManagerDelegate {
             switch res {
             case .success(let genData):
                 self.artworks = genData.filter({ $0.path.hasSuffix(".zip") })
-                self.artworks.forEach({ (artwork) in
+                self.artworks.forEach({ artwork in
                     let annotation = MKPointAnnotation();
                     annotation.coordinate = artwork.getLocationCoordinate()
                     annotation.title = artwork.name

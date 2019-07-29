@@ -14,6 +14,9 @@ class ProfileTabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
+        
         if profileData != nil {
             self.viewControllers?.forEach({ view in
                 if let subView = view as? ListTabViewController {
@@ -36,4 +39,19 @@ class ProfileTabViewController: UITabBarController {
     }
     */
 
+}
+
+extension ProfileTabViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        print("Switch!")
+        guard let fromView = selectedViewController?.view, let toView = viewController.view else {
+            return false // Make sure you want this as false
+        }
+        
+        if fromView != toView {
+            UIView.transition(from: fromView, to: toView, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+        }
+        
+        return true
+    }
 }

@@ -9,6 +9,8 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+    
+    public static let identifier: String = "SearchView"
 
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var searchTableView: UITableView!

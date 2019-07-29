@@ -44,20 +44,42 @@
                                 <rect key="frame" x="0.0" y="21" width="320" height="547"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-q5-QfM">
-                                <rect key="frame" x="137" y="481" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-q5-QfM">
+                                <rect key="frame" x="200" y="448" width="96" height="96"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="Uyn-m9-oqC"/>
+                                    <constraint firstAttribute="width" secondItem="Cjg-q5-QfM" secondAttribute="height" multiplier="1:1" id="lBw-zp-tBF"/>
+                                </constraints>
+                                <state key="normal" image="open_camera_icon"/>
                                 <connections>
-                                    <action selector="onBtnClick:" destination="Gbz-4q-keI" eventType="touchUpInside" id="6ZW-8t-UUm"/>
+                                    <action selector="openARView:" destination="Gbz-4q-keI" eventType="touchUpInside" id="jM9-9B-as6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHM-4x-P8q">
+                                <rect key="frame" x="24" y="484" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DHM-4x-P8q" secondAttribute="height" multiplier="1:1" id="k0o-TI-Say"/>
+                                    <constraint firstAttribute="width" constant="60" id="kMg-tK-faQ"/>
+                                </constraints>
+                                <state key="normal" image="search_icon"/>
+                                <connections>
+                                    <action selector="openSearchView:" destination="Gbz-4q-keI" eventType="touchUpInside" id="pHy-Ek-AXX"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yum-ez-RBA" firstAttribute="bottom" secondItem="Cjg-q5-QfM" secondAttribute="bottom" constant="24" id="8Sy-bn-ZuE"/>
+                            <constraint firstItem="yum-ez-RBA" firstAttribute="trailing" secondItem="Cjg-q5-QfM" secondAttribute="trailing" constant="24" id="DSj-yA-Tk4"/>
+                            <constraint firstItem="yum-ez-RBA" firstAttribute="bottom" secondItem="DHM-4x-P8q" secondAttribute="bottom" constant="24" id="py4-on-Jwv"/>
+                            <constraint firstItem="DHM-4x-P8q" firstAttribute="leading" secondItem="yum-ez-RBA" secondAttribute="leading" constant="24" id="vvV-ko-xwH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="yum-ez-RBA"/>
                     </view>
                     <navigationItem key="navigationItem" id="7Nq-l9-Yrn"/>
                     <connections>
+                        <outlet property="ArViewBtn" destination="Cjg-q5-QfM" id="vhn-MV-xgK"/>
+                        <outlet property="SearchViewBtn" destination="DHM-4x-P8q" id="5ja-bv-Wcr"/>
                         <outlet property="mapView" destination="wMc-aS-6H4" id="3iA-fd-PCm"/>
                         <segue destination="sO7-Mt-5DC" kind="show" id="jxO-pC-c24"/>
                         <segue destination="Nle-KQ-hbF" kind="show" id="3gj-b1-Cwz"/>
@@ -66,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckQ-gT-d7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114" y="130"/>
+            <point key="canvasLocation" x="-114.375" y="129.92957746478874"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="bTC-xD-Jga">
@@ -152,7 +174,7 @@
             </objects>
             <point key="canvasLocation" x="800.625" y="929.57746478873241"/>
         </scene>
-        <!--Item 2-->
+        <!--Map-->
         <scene sceneID="p9z-dp-0mF">
             <objects>
                 <viewController id="wao-44-VGO" customClass="MapTabViewController" customModule="Dali_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -173,7 +195,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sEG-jY-xwt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="WFZ-2q-t3V"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="hollow_marker_icon" id="WFZ-2q-t3V"/>
                     <connections>
                         <outlet property="artworkMap" destination="DOm-Ty-FU7" id="rpx-2p-39C"/>
                     </connections>
@@ -182,7 +204,7 @@
             </objects>
             <point key="canvasLocation" x="2471" y="1272"/>
         </scene>
-        <!--Item 1-->
+        <!--Artworks-->
         <scene sceneID="WhX-0U-Z1E">
             <objects>
                 <viewController id="xwt-TG-XYe" customClass="ListTabViewController" customModule="Dali_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -201,7 +223,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eo5-SG-CSQ">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artworks_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Eo5-SG-CSQ">
                                                     <rect key="frame" x="8" y="5" width="59.5" height="59.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="59.5" id="HCd-WC-gDd"/>
@@ -256,7 +278,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pgs-Na-EvB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="N7l-oN-ubO"/>
+                    <tabBarItem key="tabBarItem" title="Artworks" image="artworks_bar_icon" id="N7l-oN-ubO"/>
                     <connections>
                         <outlet property="artworkList" destination="KsM-9Y-4jO" id="A0n-fx-9lO"/>
                     </connections>
@@ -283,10 +305,10 @@
             </objects>
             <point key="canvasLocation" x="1459" y="930"/>
         </scene>
-        <!--View Controller-->
+        <!--Ar View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController storyboardIdentifier="ARView" id="BV1-FR-VrT" customClass="ViewController" customModule="Dali_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ARView" id="BV1-FR-VrT" customClass="ArViewController" customModule="Dali_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -485,4 +507,11 @@
             <point key="canvasLocation" x="801" y="130"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="artworks_bar_icon" width="24" height="24"/>
+        <image name="artworks_icon" width="128" height="128"/>
+        <image name="hollow_marker_icon" width="24" height="24"/>
+        <image name="open_camera_icon" width="96" height="96"/>
+        <image name="search_icon" width="128" height="128"/>
+    </resources>
 </document>

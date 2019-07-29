@@ -47,10 +47,7 @@ extension ListTabViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.MainText.text = cellData.name
         
-        if let profilePicUrl: String = self.profileData?.pictureUrl {
-            cell.profilePicture.loadFromUrl(urlString: profilePicUrl)
-            cell.profilePicture.setRoundedImage()
-        }
+        cell.profilePicture.setRoundedImage()
         
         let artworkGenere: String = cellData.generes.count > 0 ? cellData.generes[0] : ""
         cell.SubText.text = artworkGenere

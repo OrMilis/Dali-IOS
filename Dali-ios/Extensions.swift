@@ -45,3 +45,13 @@ extension UITextField {
         self.layer.addSublayer(bottomLine)
     }
 }
+
+extension UIButton {
+    func setShadow(color: CGColor, offset: CGSize, opacity: Float, radius: CGFloat, mask: Bool = false) {
+        self.layer.shadowColor = color
+        self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = radius
+        self.layer.masksToBounds = mask
+    }
+}
