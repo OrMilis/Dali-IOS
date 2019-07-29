@@ -23,7 +23,9 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
     var selectedArtwork: Int = 0
     var isShowingArt = false
     var centerOfScreen: CGPoint = CGPoint()
+    
     var selectedNode: SCNNode?
+    var latestTranslatePos: CGPoint = CGPoint()
 
     
     override func viewDidLoad() {
@@ -83,6 +85,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func resetSceneNodes() {
+        selectedNode = nil
         sceneView.scene.rootNode.childNodes.forEach({node in
             if node.name != nil {
                 node.removeFromParentNode()
@@ -101,6 +104,34 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
         self.selectedArtwork = self.pageControl.currentPage
         loadSelectedArtwork()
         resetSceneNodes()
+    }
+    
+    @IBAction func handlePan(_ recognizer: UIPanGestureRecognizer) {
+        guard let node = selectedNode else { return }
+        let sceneView = recognizer.view as! ARSCNView
+        let touchLocation = recognizer.location(in: sceneView)
+        let state = recognizer.state
+        let hitTestResult = sceneView.hitTest(touchLocation, options: [:])
+        
+        if state == .changed {
+            // Translate virtual object
+            let deltaX = Float(touchLocation.x - latestTranslatePos.x)
+            let deltaY = Float(touchLocation.y - latestTranslatePos.y)
+            
+            guard let hit = hitTestResult.first else { return }
+            
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.2
+            node.worldPosition.x = hit.worldCoordinates.x
+            //node.worldPosition.y = hit.worldCoordinates.y
+            node.worldPosition.z = hit.worldCoordinates.z
+            SCNTransaction.commit()
+            
+            //node.localTranslate(by: SCNVector3Make(deltaX, 0.0, deltaY))
+            
+            latestTranslatePos = touchLocation
+        }
+        
     }
     
     // MARK: - ARSCNViewDelegate
@@ -204,6 +235,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             
             artworkNode.position = SCNVector3(x,y,z)
             sceneView.scene.rootNode.addChildNode(artworkNode)
+            selectedNode = artworkNode
         }
     }
     
