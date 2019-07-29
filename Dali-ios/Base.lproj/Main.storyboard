@@ -318,6 +318,8 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="kRE-SQ-7x5" appends="YES" id="8nQ-Mb-yWN"/>
+                                    <outletCollection property="gestureRecognizers" destination="g7p-TW-dzM" appends="YES" id="47U-FH-9c6"/>
+                                    <outletCollection property="gestureRecognizers" destination="aDY-bD-NCr" appends="YES" id="xJW-kr-Btm"/>
                                 </connections>
                             </arscnView>
                             <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iVj-VG-3Y3">
@@ -404,15 +406,27 @@
                     <connections>
                         <outlet property="collectionView" destination="d2z-tO-SCP" id="fdq-gc-hLm"/>
                         <outlet property="pageControl" destination="iVj-VG-3Y3" id="77b-QY-UgX"/>
+                        <outlet property="pinchRecognizer" destination="aDY-bD-NCr" id="qdW-e0-oVH"/>
+                        <outlet property="rotateRecognizer" destination="g7p-TW-dzM" id="ZFW-vu-a0V"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="kRE-SQ-7x5">
+                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="kRE-SQ-7x5">
                     <connections>
                         <action selector="handlePan:" destination="BV1-FR-VrT" id="iD0-Tz-7Rc"/>
                     </connections>
                 </panGestureRecognizer>
+                <rotationGestureRecognizer id="g7p-TW-dzM">
+                    <connections>
+                        <action selector="handleRotation:" destination="BV1-FR-VrT" id="DpD-fD-SNB"/>
+                    </connections>
+                </rotationGestureRecognizer>
+                <pinchGestureRecognizer id="aDY-bD-NCr">
+                    <connections>
+                        <action selector="handlePinch:" destination="BV1-FR-VrT" id="vrD-Xw-IwK"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1719.375" y="129.92957746478874"/>
         </scene>

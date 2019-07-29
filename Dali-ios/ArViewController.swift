@@ -10,13 +10,17 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ArViewController: UIViewController, ARSCNViewDelegate {
+class ArViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDelegate {
     
     public static let identifier: String = "ARView"
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet var rotateRecognizer: UIRotationGestureRecognizer!
+    @IBOutlet var pinchRecognizer: UIPinchGestureRecognizer!
+    
     
     var artworks: [Artwork] = [Artwork]()
     var downloadedArtworks = [Bool]()
@@ -25,11 +29,14 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
     var centerOfScreen: CGPoint = CGPoint()
     
     var selectedNode: SCNNode?
-    var latestTranslatePos: CGPoint = CGPoint()
+    var latestTranslatePos: SCNVector3 = SCNVector3()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        rotateRecognizer.delegate = self
+        pinchRecognizer.delegate = self
         
         self.collectionView.isPagingEnabled = true
         self.collectionView.alwaysBounceHorizontal = false
@@ -112,26 +119,56 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
         let touchLocation = recognizer.location(in: sceneView)
         let state = recognizer.state
         let hitTestResult = sceneView.hitTest(touchLocation, options: [:])
+        guard let hit = hitTestResult.first else { return }
+        
+        if state == .began {
+            latestTranslatePos = hit.worldCoordinates
+        }
         
         if state == .changed {
-            // Translate virtual object
-            let deltaX = Float(touchLocation.x - latestTranslatePos.x)
-            let deltaY = Float(touchLocation.y - latestTranslatePos.y)
+            let touchWorldVector = hit.worldCoordinates
             
-            guard let hit = hitTestResult.first else { return }
+            // Translate virtual object. ** Y_UP world **
+            let deltaX = Float(touchWorldVector.x - latestTranslatePos.x)
+            let deltaZ = Float(touchWorldVector.z - latestTranslatePos.z)
             
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.2
-            node.worldPosition.x = hit.worldCoordinates.x
+            node.worldPosition.x += deltaX //hit.worldCoordinates.x
             //node.worldPosition.y = hit.worldCoordinates.y
-            node.worldPosition.z = hit.worldCoordinates.z
-            SCNTransaction.commit()
+            node.worldPosition.z += deltaZ
+            
+            /*SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.2
+            node.worldPosition.x += deltaX //hit.worldCoordinates.x
+            //node.worldPosition.y = hit.worldCoordinates.y
+            node.worldPosition.z = deltaZ//hit.worldCoordinates.z
+            SCNTransaction.commit()*/
             
             //node.localTranslate(by: SCNVector3Make(deltaX, 0.0, deltaY))
             
-            latestTranslatePos = touchLocation
+            latestTranslatePos = touchWorldVector
         }
         
+    }
+    
+    @IBAction func handleRotation(_ recognizer: UIRotationGestureRecognizer){
+        guard let node = selectedNode else { return }
+        let sensitivity = 0.075
+        let rotationY = CGFloat(Double(recognizer.rotation) * -sensitivity) //Minus so it will rotate as the gesture
+        let action = SCNAction.rotateBy(x: 0.0, y: rotationY, z: 0.0, duration: 0.1) //We want to rotate only on Y axis
+        node.runAction(action)
+
+    }
+    
+    @IBAction func handlePinch(_ recognizer: UIPinchGestureRecognizer) {
+        guard let node = selectedNode else { return }
+        
+        let action = SCNAction.scale(by: recognizer.scale, duration: 0.1)
+        node.runAction(action)
+        recognizer.scale = 1
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     // MARK: - ARSCNViewDelegate
@@ -234,6 +271,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate {
             let artworkNode = artworkScene.rootNode.childNodes[0]
             
             artworkNode.position = SCNVector3(x,y,z)
+
             sceneView.scene.rootNode.addChildNode(artworkNode)
             selectedNode = artworkNode
         }
