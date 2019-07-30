@@ -43,22 +43,32 @@ class RestController: NSObject {
         }
     }
     
-    class func getPictureFromURL(urlString: String, completion: @escaping (Result<Data, Error>) -> ()) {
-        guard let url = URL(string: urlString) else { return }
+    class func signInApp(id: String, name: String, pictureUrl: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        let urlString = self.endPoint + self.userPath + "/signInApp?" + "id=" + id + "&name=" + name + "&picture=" + pictureUrl
+        
+        getNonJSON(urlString: urlString, completion: completion)
+    }
+    
+    class func getNonJSON<T>(urlString: String, completion: @escaping (Result<T, Error>) -> ()) {
+        guard let encodedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
+        guard let url = URL(string: encodedUrlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             
             if let err = err {
                 completion(.failure(err))
                 return
             }
+            if let genData = data as? T {
+                completion(.success(genData))
+            } else {
+                guard let bool = Bool(String(data: data!, encoding: String.Encoding.ascii) ?? "false") as? T else { return }
+                completion(.success(bool))
+            }
             
-            guard let genData = data else { return }
-            completion(.success(genData))
-            
-            }.resume()
+        }.resume()
     }
     
-    private class func get<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> ()){
+    private class func get<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> ()) {
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
          
              if let err = err {

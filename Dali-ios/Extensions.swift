@@ -11,7 +11,7 @@ import UIKit
 
 extension UIImageView {
     func loadFromUrl(urlString: String) {
-        RestController.getPictureFromURL(urlString: urlString, completion: { (res) in
+        RestController.getNonJSON(urlString: urlString, completion: { ( res: Result<Data, Error>) in
             switch res {
             case .success(let genData):
                 guard let image = UIImage(data: genData) else { return }

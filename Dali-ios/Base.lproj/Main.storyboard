@@ -40,8 +40,8 @@
                                     <constraint firstAttribute="width" secondItem="bNS-Pp-UVi" secondAttribute="height" multiplier="67:86" id="ry9-Cc-lZO"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dali Project" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCa-L2-TAm">
-                                <rect key="frame" x="32" y="252" width="256" height="144"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dali Project" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nCa-L2-TAm">
+                                <rect key="frame" x="64" y="236.5" width="192" height="143.5"/>
                                 <fontDescription key="fontDescription" name="Alessandria" family="Alessandria" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -50,16 +50,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yUg-Ty-VBt" firstAttribute="trailing" secondItem="wPG-ct-4Q9" secondAttribute="trailing" constant="48" id="8Y7-uK-tGS"/>
-                            <constraint firstItem="nCa-L2-TAm" firstAttribute="leading" secondItem="yUg-Ty-VBt" secondAttribute="leading" constant="32" id="ADv-ax-Tnt"/>
+                            <constraint firstItem="nCa-L2-TAm" firstAttribute="leading" secondItem="yUg-Ty-VBt" secondAttribute="leading" constant="64" id="ADv-ax-Tnt"/>
                             <constraint firstItem="bNS-Pp-UVi" firstAttribute="top" secondItem="yUg-Ty-VBt" secondAttribute="top" id="Dwn-KI-P0r"/>
-                            <constraint firstItem="wPG-ct-4Q9" firstAttribute="top" secondItem="nCa-L2-TAm" secondAttribute="bottom" constant="32" id="G50-gg-xl7"/>
+                            <constraint firstItem="wPG-ct-4Q9" firstAttribute="top" secondItem="nCa-L2-TAm" secondAttribute="bottom" constant="48" id="G50-gg-xl7"/>
                             <constraint firstItem="bNS-Pp-UVi" firstAttribute="leading" secondItem="yUg-Ty-VBt" secondAttribute="leading" constant="60" id="JLa-Za-ZAD"/>
                             <constraint firstItem="yUg-Ty-VBt" firstAttribute="bottom" secondItem="wPG-ct-4Q9" secondAttribute="bottom" constant="96" id="RGn-ot-RpZ"/>
                             <constraint firstItem="yUg-Ty-VBt" firstAttribute="trailing" secondItem="bNS-Pp-UVi" secondAttribute="trailing" constant="60" id="TfB-qh-jLE"/>
                             <constraint firstItem="Agp-Zc-g49" firstAttribute="bottom" secondItem="yUg-Ty-VBt" secondAttribute="bottom" id="WYD-fV-PwB"/>
                             <constraint firstItem="Agp-Zc-g49" firstAttribute="trailing" secondItem="yUg-Ty-VBt" secondAttribute="trailing" id="Zdn-rQ-ERa"/>
                             <constraint firstItem="wPG-ct-4Q9" firstAttribute="leading" secondItem="yUg-Ty-VBt" secondAttribute="leading" constant="48" id="ZmI-fY-7be"/>
-                            <constraint firstItem="yUg-Ty-VBt" firstAttribute="trailing" secondItem="nCa-L2-TAm" secondAttribute="trailing" constant="32" id="f0B-YP-Zlv"/>
+                            <constraint firstItem="yUg-Ty-VBt" firstAttribute="trailing" secondItem="nCa-L2-TAm" secondAttribute="trailing" constant="64" id="f0B-YP-Zlv"/>
                             <constraint firstItem="Agp-Zc-g49" firstAttribute="top" secondItem="V4j-NT-NzL" secondAttribute="top" id="vtQ-ov-BQs"/>
                             <constraint firstItem="Agp-Zc-g49" firstAttribute="leading" secondItem="yUg-Ty-VBt" secondAttribute="leading" id="wWU-BY-ElD"/>
                         </constraints>
