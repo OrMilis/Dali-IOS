@@ -26,7 +26,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().clientID = "968539886024-2tt19rq70iqufk4f8dfst8l0sstg8u5n.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
-        //GIDSignIn.sharedInstance().signInSilently()
+        GIDSignIn.sharedInstance().signInSilently()
         // Do any additional setup after loading the view.
     }
     

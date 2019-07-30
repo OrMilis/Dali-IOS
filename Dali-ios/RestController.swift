@@ -49,6 +49,18 @@ class RestController: NSObject {
         getNonJSON(urlString: urlString, completion: completion)
     }
     
+    class func likeArtwork(artworkId: Int, completion: @escaping (Result<Bool, Error>) -> ()) {
+        let urlString = self.endPoint + self.userPath + "/likeArtwork?" + "artworkId=" + "\(artworkId)" + "&userId=" + self.userID
+        
+        getNonJSON(urlString: urlString, completion: completion)
+    }
+    
+    class func unlikeArtwork(artworkId: Int, completion: @escaping (Result<Bool, Error>) -> ()) {
+        let urlString = self.endPoint + self.userPath + "/unlikeArtwork?" + "artworkId=" + "\(artworkId)" + "&userId=" + self.userID
+        
+        getNonJSON(urlString: urlString, completion: completion)
+    }
+    
     class func getNonJSON<T>(urlString: String, completion: @escaping (Result<T, Error>) -> ()) {
         guard let encodedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
         guard let url = URL(string: encodedUrlString) else { return }
@@ -77,6 +89,7 @@ class RestController: NSObject {
              }
             
              do {
+                print(data!)
                 let genData = try JSONDecoder().decode(T.self, from: data!)
                 completion(.success(genData))
              } catch let jsonError {

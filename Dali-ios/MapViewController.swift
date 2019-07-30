@@ -22,10 +22,12 @@ class MapViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     
+    var userProfile: Artist?
     var artworks: [Artwork] = [Artwork]()
     
     override func viewWillAppear(_ animated: Bool) {
-        locationManager.requestWhenInUseAuthorization();
+        locationManager.requestWhenInUseAuthorization()
+        getUserProfileData()
     }
     
     override func viewDidLoad() {
@@ -58,11 +60,23 @@ class MapViewController: UIViewController {
         
     }
     
+    func getUserProfileData() {
+        RestController.getProfileById(id: RestController.userID, completion: { res in
+            switch res {
+            case .success(let profile):
+                self.userProfile = profile
+            case .failure(let err):
+                print(err)
+            }
+        })
+    }
+    
     @IBAction func openARView(_ sender: Any) {
+        guard let profile = userProfile else { return }
         if self.artworks.count > 0 {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             guard let arViewController = storyBoard.instantiateViewController(withIdentifier: ArViewController.identifier) as? ArViewController else { return }
-            arViewController.setDataForView(artworks: self.artworks)
+            arViewController.setDataForView(artworks: self.artworks, likedArtworks: profile.likedArtwork)
             self.navigationController?.pushViewController(arViewController, animated: true)
         }
     }
@@ -74,21 +88,12 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func openUserProfile(_ sender: Any) {
-        RestController.getProfileById(id: RestController.userID, completion: { res in
-            switch res {
-            case .success(let profile):
-                DispatchQueue.main.sync {
-                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let profileViewController = storyBoard.instantiateViewController(withIdentifier: ProfileViewController.identifier) as? ProfileViewController else { return }
-                    profileViewController.profileData = profile
-                    profileViewController.profileType = .UserProfile
-                    self.navigationController?.pushViewController(profileViewController, animated: true)
-                }
- 
-            case .failure(let err):
-                print(err)
-            }
-        })
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let profileViewController = storyBoard.instantiateViewController(withIdentifier: ProfileViewController.identifier) as? ProfileViewController else { return }
+        guard let profile = userProfile else { return }
+        profileViewController.profileData = profile
+        profileViewController.profileType = .UserProfile
+        self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     /*
     // MARK: - Navigation
@@ -105,6 +110,9 @@ class MapViewController: UIViewController {
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        if userProfile == nil {
+            getUserProfileData()
+        }
         
         RestController.getArtworkByLocation(latitude: location.latitude, longitude: location.longitude, completion: { (res) in
             switch res {

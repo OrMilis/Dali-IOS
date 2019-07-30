@@ -21,8 +21,8 @@ class ArViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
     @IBOutlet var rotateRecognizer: UIRotationGestureRecognizer!
     @IBOutlet var pinchRecognizer: UIPinchGestureRecognizer!
     
-    
     var artworks: [Artwork] = [Artwork]()
+    var likedArtworks: [Artwork] = [Artwork]()
     var downloadedArtworks = [Bool]()
     var selectedArtwork: Int = 0
     var isShowingArt = false
@@ -47,8 +47,6 @@ class ArViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
         //sceneView.showsStatistics = true
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
-        
-        //addTapGestureToSceneView()
         
         clearTempArtFiles()
         
@@ -76,10 +74,10 @@ class ArViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
         clearTempArtFiles()
     }
     
-    func setDataForView(artworks: [Artwork]) {
+    func setDataForView(artworks: [Artwork], likedArtworks: [Artwork]) {
         self.artworks = artworks
+        self.likedArtworks = likedArtworks
         self.downloadedArtworks = Array(repeating: false, count: artworks.count)
-        dump(downloadedArtworks)
     }
     
     func loadSelectedArtwork() {
@@ -132,18 +130,8 @@ class ArViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
             let deltaX = Float(touchWorldVector.x - latestTranslatePos.x)
             let deltaZ = Float(touchWorldVector.z - latestTranslatePos.z)
             
-            node.worldPosition.x += deltaX //hit.worldCoordinates.x
-            //node.worldPosition.y = hit.worldCoordinates.y
+            node.worldPosition.x += deltaX
             node.worldPosition.z += deltaZ
-            
-            /*SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.2
-            node.worldPosition.x += deltaX //hit.worldCoordinates.x
-            //node.worldPosition.y = hit.worldCoordinates.y
-            node.worldPosition.z = deltaZ//hit.worldCoordinates.z
-            SCNTransaction.commit()*/
-            
-            //node.localTranslate(by: SCNVector3Make(deltaX, 0.0, deltaY))
             
             latestTranslatePos = touchWorldVector
         }
@@ -337,6 +325,11 @@ extension ArViewController: UICollectionViewDelegate, UICollectionViewDataSource
             cell.artistPicture.loadFromUrl(urlString: artistPicUrl)
             cell.artistPicture.setRoundedImage()
         }
+        
+        cell.artworkId = cellData.id
+        let isLiked = self.likedArtworks.filter({$0.id == cellData.id}).count > 0
+        cell.isLiked = isLiked
+        cell.likeBtn.tintColor = isLiked ? UIColor.red : UIColor.white
         
         return cell
     }

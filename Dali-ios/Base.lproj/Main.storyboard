@@ -442,12 +442,25 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDv-Xo-qLC">
+                                                    <rect key="frame" x="265" y="27" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="g6T-te-KeE"/>
+                                                        <constraint firstAttribute="width" secondItem="qDv-Xo-qLC" secondAttribute="height" multiplier="1:1" id="p6e-HZ-U6Q"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="like_icon"/>
+                                                    <connections>
+                                                        <action selector="onLikeClick:" destination="LUt-oO-DwS" eventType="touchUpInside" id="iiW-Ea-qBs"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="IlA-8O-WXp" firstAttribute="top" secondItem="LUt-oO-DwS" secondAttribute="top" constant="8" id="2gr-pT-FUv"/>
                                             <constraint firstAttribute="trailing" secondItem="IeA-b2-CZy" secondAttribute="trailing" constant="8" id="DMK-g7-NhV"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="qDv-Xo-qLC" secondAttribute="trailing" constant="12" id="DZs-m1-MYT"/>
                                             <constraint firstItem="IlA-8O-WXp" firstAttribute="leading" secondItem="LUt-oO-DwS" secondAttribute="leading" constant="16" id="H1h-EE-f60"/>
                                             <constraint firstItem="IeA-b2-CZy" firstAttribute="top" secondItem="LUt-oO-DwS" secondAttribute="top" constant="8" id="Jb4-dB-8vC"/>
                                             <constraint firstAttribute="bottom" secondItem="ZiQ-3J-Cjb" secondAttribute="bottom" constant="8" id="OPy-hf-ujC"/>
@@ -456,12 +469,14 @@
                                             <constraint firstItem="IeA-b2-CZy" firstAttribute="leading" secondItem="IlA-8O-WXp" secondAttribute="trailing" constant="16" id="Uyf-5d-3KK"/>
                                             <constraint firstAttribute="bottom" secondItem="IlA-8O-WXp" secondAttribute="bottom" constant="8" id="aJK-0B-oED"/>
                                             <constraint firstItem="ZiQ-3J-Cjb" firstAttribute="leading" secondItem="IlA-8O-WXp" secondAttribute="trailing" constant="16" id="bAx-3H-wUE"/>
+                                            <constraint firstItem="qDv-Xo-qLC" firstAttribute="centerY" secondItem="LUt-oO-DwS" secondAttribute="centerY" id="pbf-Dh-MoN"/>
                                         </constraints>
                                         <size key="customSize" width="320" height="89"/>
                                         <connections>
                                             <outlet property="artistName" destination="ZiQ-3J-Cjb" id="cep-EJ-4Xs"/>
                                             <outlet property="artistPicture" destination="IlA-8O-WXp" id="UcH-YA-hli"/>
                                             <outlet property="artworkName" destination="IeA-b2-CZy" id="Jn5-C0-Sw3"/>
+                                            <outlet property="likeBtn" destination="qDv-Xo-qLC" id="cPI-XA-a7k"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -610,6 +625,7 @@
     <resources>
         <image name="Logo" width="1069" height="1383"/>
         <image name="artworks_icon" width="128" height="128"/>
+        <image name="like_icon" width="24" height="24"/>
         <image name="open_camera_icon" width="96" height="96"/>
         <image name="profile_icon" width="128" height="128"/>
         <image name="search_icon" width="128" height="128"/>
