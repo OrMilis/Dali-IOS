@@ -41,3 +41,8 @@ public class Artist: Decodable {
     let artworks: [Artwork]
     let followers: [String]
 }
+
+
+public enum ProfileType {
+    case ArtistProfile, UserProfile
+}

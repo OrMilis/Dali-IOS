@@ -10,12 +10,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    public static let identifier: String = "ProfileViewController"
+    
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var artistMainGenere: UILabel!
     @IBOutlet weak var artistBio: UILabel!
     
     var profileData: Artist?
+    var profileType: ProfileType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +52,7 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
         guard let vc = segue.destination as? ProfileTabViewController, segue.identifier == "ProfileTabViewControllerSegue" else { return }
         vc.profileData = self.profileData
+        vc.profileType = self.profileType
     }
     
 

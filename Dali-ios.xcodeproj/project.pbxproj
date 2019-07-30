@@ -11,6 +11,9 @@
 		3C0CB02222E91431000B7546 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CB02122E91431000B7546 /* ProfileTabViewController.swift */; };
 		3C0CB02422E92516000B7546 /* ListTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CB02322E92516000B7546 /* ListTabViewController.swift */; };
 		3C0CB02622E92527000B7546 /* MapTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CB02522E92527000B7546 /* MapTabViewController.swift */; };
+		3C14718A22EF3D3F0011BBC4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C14718922EF3D3F0011BBC4 /* SignInViewController.swift */; };
+		3C14718C22EF3E470011BBC4 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C14718B22EF3E470011BBC4 /* credentials.plist */; };
+		3C14718E22EFBF210011BBC4 /* Alessandria.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C14718D22EFBF210011BBC4 /* Alessandria.ttf */; };
 		3C1DC6F722ECD83E0095EE37 /* ArtworkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1DC6F622ECD83E0095EE37 /* ArtworkInfoCell.swift */; };
 		3C227B8222DF53FD007C9498 /* RestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C227B8122DF53FD007C9498 /* RestController.swift */; };
 		3C227B8422DF6C14007C9498 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C227B8322DF6C14007C9498 /* Models.swift */; };
@@ -34,6 +37,9 @@
 		3C0CB02122E91431000B7546 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		3C0CB02322E92516000B7546 /* ListTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTabViewController.swift; sourceTree = "<group>"; };
 		3C0CB02522E92527000B7546 /* MapTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTabViewController.swift; sourceTree = "<group>"; };
+		3C14718922EF3D3F0011BBC4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		3C14718B22EF3E470011BBC4 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
+		3C14718D22EFBF210011BBC4 /* Alessandria.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alessandria.ttf; sourceTree = "<group>"; };
 		3C1DC6F622ECD83E0095EE37 /* ArtworkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkInfoCell.swift; sourceTree = "<group>"; };
 		3C227B8122DF53FD007C9498 /* RestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestController.swift; sourceTree = "<group>"; };
 		3C227B8322DF6C14007C9498 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -64,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C14718F22EFBF2D0011BBC4 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3C14718D22EFBF210011BBC4 /* Alessandria.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		3C74025022DE9C3C0064EE99 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +99,7 @@
 		3C74025B22DE9C3D0064EE99 /* Dali-ios */ = {
 			isa = PBXGroup;
 			children = (
+				3C14718F22EFBF2D0011BBC4 /* fonts */,
 				3C74025C22DE9C3D0064EE99 /* AppDelegate.swift */,
 				3C74025E22DE9C3D0064EE99 /* art.scnassets */,
 				3C74026022DE9C3D0064EE99 /* ArViewController.swift */,
@@ -92,6 +107,7 @@
 				3C74026522DE9C3F0064EE99 /* Assets.xcassets */,
 				3C74026722DE9C3F0064EE99 /* LaunchScreen.storyboard */,
 				3C74026A22DE9C3F0064EE99 /* Info.plist */,
+				3C14718B22EF3E470011BBC4 /* credentials.plist */,
 				3C0C288222DF4152004EB351 /* MapViewController.swift */,
 				3C227B8122DF53FD007C9498 /* RestController.swift */,
 				3C227B8322DF6C14007C9498 /* Models.swift */,
@@ -103,6 +119,7 @@
 				3C0CB02322E92516000B7546 /* ListTabViewController.swift */,
 				3C0CB02522E92527000B7546 /* MapTabViewController.swift */,
 				3C1DC6F622ECD83E0095EE37 /* ArtworkInfoCell.swift */,
+				3C14718922EF3D3F0011BBC4 /* SignInViewController.swift */,
 			);
 			path = "Dali-ios";
 			sourceTree = "<group>";
@@ -136,6 +153,7 @@
 				3C74025622DE9C3C0064EE99 /* Frameworks */,
 				3C74025722DE9C3C0064EE99 /* Resources */,
 				29016E2E0BCAD8C6B846E1AB /* [CP] Embed Pods Frameworks */,
+				7A76FB8F2D5DEED23A9D55A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,8 +202,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C14718E22EFBF210011BBC4 /* Alessandria.ttf in Resources */,
 				3C74025F22DE9C3D0064EE99 /* art.scnassets in Resources */,
 				3C74026922DE9C3F0064EE99 /* LaunchScreen.storyboard in Resources */,
+				3C14718C22EF3E470011BBC4 /* credentials.plist in Resources */,
 				3C74026622DE9C3F0064EE99 /* Assets.xcassets in Resources */,
 				3C74026422DE9C3D0064EE99 /* Main.storyboard in Resources */,
 			);
@@ -209,6 +229,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A76FB8F2D5DEED23A9D55A9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F590FE1B7C9017A70029F3EE /* [CP] Check Pods Manifest.lock */ = {
@@ -240,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C14718A22EF3D3F0011BBC4 /* SignInViewController.swift in Sources */,
 				3C2CC1FB22E4FC4100EA833B /* SearchViewController.swift in Sources */,
 				3C0CB02622E92527000B7546 /* MapTabViewController.swift in Sources */,
 				3C74026122DE9C3D0064EE99 /* ArViewController.swift in Sources */,

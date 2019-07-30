@@ -1,16 +1,36 @@
 PODS:
+  - GoogleSignIn (4.4.0):
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/DebugUtils (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
+  - GTMSessionFetcher/Core (1.2.2)
   - ZIPFoundation (0.9.9)
 
 DEPENDENCIES:
+  - GoogleSignIn
   - ZIPFoundation (~> 0.9)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - GoogleSignIn
+    - GoogleToolboxForMac
+    - GTMSessionFetcher
     - ZIPFoundation
 
 SPEC CHECKSUMS:
+  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
+  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   ZIPFoundation: 89df685c971926b0323087952320bdfee9f0b6ef
 
-PODFILE CHECKSUM: 5895b5e53aa909af322511fc17b6affd802bd3be
+PODFILE CHECKSUM: 7589ff06c1889c46a21d0b47973802500f90c341
 
 COCOAPODS: 1.7.4

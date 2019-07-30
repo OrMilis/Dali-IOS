@@ -7,4 +7,5 @@ target 'Dali-ios' do
 
   # Pods for Dali-ios
 	pod 'ZIPFoundation', '~> 0.9'
+	pod 'GoogleSignIn'
 end

@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Dali-ios/Pods-Dali-ios-frameworks.sh
+${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework
+${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework
 ${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework

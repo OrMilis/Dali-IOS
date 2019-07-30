@@ -12,9 +12,13 @@ import ZIPFoundation
 
 class MapViewController: UIViewController {
     
+    public static let navigationControllerIdentifier: String = "AppMainNavigationController"
+    public static let identifier: String = "MapView"
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ArViewBtn: UIButton!
     @IBOutlet weak var SearchViewBtn: UIButton!
+    @IBOutlet weak var ProfileViewBtn: UIButton!
     
     let locationManager = CLLocationManager()
     
@@ -32,6 +36,9 @@ class MapViewController: UIViewController {
         
         SearchViewBtn.imageView?.setRoundedImage()
         SearchViewBtn.setShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor, offset: CGSize(width: 0.0, height: 3.0), opacity: 0.25, radius: 10.0)
+        
+        ProfileViewBtn.imageView?.setRoundedImage()
+        ProfileViewBtn.setShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor, offset: CGSize(width: 0.0, height: 3.0), opacity: 0.25, radius: 10.0)
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         
@@ -64,6 +71,24 @@ class MapViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let searchViewController = storyBoard.instantiateViewController(withIdentifier: SearchViewController.identifier) as? SearchViewController else { return }
         self.navigationController?.pushViewController(searchViewController, animated: true)
+    }
+    
+    @IBAction func openUserProfile(_ sender: Any) {
+        RestController.getProfileById(id: RestController.userID, completion: { res in
+            switch res {
+            case .success(let profile):
+                DispatchQueue.main.sync {
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let profileViewController = storyBoard.instantiateViewController(withIdentifier: ProfileViewController.identifier) as? ProfileViewController else { return }
+                    profileViewController.profileData = profile
+                    profileViewController.profileType = .UserProfile
+                    self.navigationController?.pushViewController(profileViewController, animated: true)
+                }
+ 
+            case .failure(let err):
+                print(err)
+            }
+        })
     }
     /*
     // MARK: - Navigation

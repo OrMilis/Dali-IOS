@@ -12,13 +12,18 @@ import MapKit
 class MapTabViewController: UIViewController {
 
     var profileData: Artist?
+    var profileType: ProfileType?
     @IBOutlet weak var artworkMap: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard profileData != nil else { return }
-        profileData?.artworks.forEach({ artwork in
+        guard let data = profileData else { return }
+        guard let type = profileType else { return }
+        
+        let artworks = type == .ArtistProfile ? data.artworks : data.likedArtwork
+        
+        artworks.forEach({ artwork in
             let annotation = MKPointAnnotation();
             annotation.coordinate = artwork.getLocationCoordinate()
             annotation.title = artwork.name
@@ -28,8 +33,9 @@ class MapTabViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func setProfileData(artist: Artist) {
+    func setProfileData(artist: Artist, type: ProfileType) {
         self.profileData = artist
+        self.profileType = type
     }
     
     /*

@@ -26,8 +26,6 @@ class SearchViewController: UIViewController {
         searchTableView.rowHeight = UITableView.automaticDimension
         searchTableView.estimatedRowHeight = 600
 
-        /*testImage.loadFromUrl(urlString: "https://twistedsifter.files.wordpress.com/2012/09/trippy-profile-pic-portrait-head-on-and-from-side-angle.jpg")
-        testImage.setRoundedImage()*/
         // Do any additional setup after loading the view.
     }
     
@@ -79,6 +77,7 @@ class SearchViewController: UIViewController {
         guard let profileViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
         
         profileViewController.profileData = artist
+        profileViewController.profileType = .ArtistProfile
         
         self.navigationController?.pushViewController(profileViewController, animated: true);
     }
