@@ -67,11 +67,12 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="Agp-Zc-g49" id="t6U-KD-iCw"/>
+                        <segue destination="4ad-YR-Sid" kind="show" id="SQR-2C-9YB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Kx-cC-CT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2109.375" y="129.92957746478874"/>
+            <point key="canvasLocation" x="-1924" y="130"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BkY-GD-8Hi">
@@ -279,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sWA-xr-LZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2471" y="1272"/>
+            <point key="canvasLocation" x="2469" y="1154"/>
         </scene>
         <!--Artworks-->
         <scene sceneID="WhX-0U-Z1E">
@@ -362,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TIu-L6-j9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2471" y="596"/>
+            <point key="canvasLocation" x="2468" y="717"/>
         </scene>
         <!--Profile Tab View Controller-->
         <scene sceneID="u6N-xO-dOb">
@@ -424,7 +425,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="PigeonFish" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiQ-3J-Cjb">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="PigeonFish" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZiQ-3J-Cjb">
                                                     <rect key="frame" x="105" y="59.5" width="207" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -436,8 +437,8 @@
                                                         <constraint firstAttribute="width" secondItem="IlA-8O-WXp" secondAttribute="height" multiplier="1:1" id="g3l-uA-Hcv"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Round Flat" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeA-b2-CZy">
-                                                    <rect key="frame" x="105" y="8" width="207" height="55.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Round Flat" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IeA-b2-CZy">
+                                                    <rect key="frame" x="105" y="8" width="156" height="55.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -459,7 +460,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="IlA-8O-WXp" firstAttribute="top" secondItem="LUt-oO-DwS" secondAttribute="top" constant="8" id="2gr-pT-FUv"/>
-                                            <constraint firstAttribute="trailing" secondItem="IeA-b2-CZy" secondAttribute="trailing" constant="8" id="DMK-g7-NhV"/>
+                                            <constraint firstItem="IeA-b2-CZy" firstAttribute="trailing" secondItem="qDv-Xo-qLC" secondAttribute="leading" constant="-4" id="DMK-g7-NhV"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="qDv-Xo-qLC" secondAttribute="trailing" constant="12" id="DZs-m1-MYT"/>
                                             <constraint firstItem="IlA-8O-WXp" firstAttribute="leading" secondItem="LUt-oO-DwS" secondAttribute="leading" constant="16" id="H1h-EE-f60"/>
                                             <constraint firstItem="IeA-b2-CZy" firstAttribute="top" secondItem="LUt-oO-DwS" secondAttribute="top" constant="8" id="Jb4-dB-8vC"/>

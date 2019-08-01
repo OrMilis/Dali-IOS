@@ -230,12 +230,15 @@ class ArViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
         
         func addArtworkToSceneView(/*withGestureRecognizer recognizer: UIGestureRecognizer*/) {
             //let tapLocation = recognizer.location(in: sceneView)
+            print("In ADD ART")
             let hitTestResults = sceneView.hitTest(centerOfScreen, types: .existingPlaneUsingExtent)
             
             guard let hitTestResult = hitTestResults.first else {
+                print("NO HIT PLANE")
                 isShowingArt = false
                 return
             }
+            
             let translation = hitTestResult.worldTransform.columns.3
             let x = translation.x
             let y = translation.y
@@ -256,6 +259,7 @@ class ArViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
                 isShowingArt = false
                 return
             }
+            print("CHECK TRY?")
             let artworkNode = artworkScene.rootNode.childNodes[0]
             
             artworkNode.position = SCNVector3(x,y,z)
